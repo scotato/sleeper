@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
+import ColorView from './ColorView'
 
 const Dashboard = styled.main`
   display: grid;
@@ -13,7 +14,6 @@ const Dashboard = styled.main`
   top: 0;
   left: 0;
   font-family: monospace;
-  background-color: ${props => `hsl(${props.hue}, ${props.saturation}%, ${props.lightness}%)`};
   grid-gap: 2vw 2vw;
   grid-template-columns: 39vw 39vw;
   grid-template-rows: auto;
@@ -101,16 +101,6 @@ const TimeVisualizer = () => {
   const secondsInDayPortion = (date.seconds() + (date.minutes() * secondsInMinute) + (date.hours() * secondsInHour)) / secondsInDay
 
   const timeMax = 86400
-  // const hueMin = 0 // secon
-  const hueMax = 360 // month / day / minute
-  const saturationMin = 30 // day
-  // const saturationMax = 100 // day
-  const lightnessMin = 30 // day
-  // const lightnessMax = 70 // day
-
-  const hue = secondsInDayPortion * hueMax
-  const saturation = (secondsInDayPortion * 70) + saturationMin
-  const lightness = (secondsInDayPortion * 40) + lightnessMin
   
   // play
   useEffect(() => {
@@ -121,36 +111,40 @@ const TimeVisualizer = () => {
   })
 
   return (
-    <Dashboard hue={hue} saturation={saturation} lightness={lightness}>
-      <Header>
-        <h1>{timePretty}</h1>
-        <Button onClick={() => setIsPlaying(!isPlaying)}>
-          { isPlaying ? "Pause" : "Play" }
-        </Button>
-      </Header>
-
-      <Colors>
-        <p><strong>Hue:</strong> {Math.round(hue)}</p>
-        <Range value={hue} min={0} max={360} />
-        <p><strong>Saturation:</strong> {Math.round(saturation)}</p>
-        <Range value={saturation} min={0} max={100} />
-        <p><strong>Lightness:</strong> {Math.round(lightness)}</p>
-        <Range value={lightness} min={0} max={100} />
-      </Colors>
-
-      <Time>
-        <p><strong>Seconds / Minute:</strong> {date.seconds()} / {60} {Math.round(secondsInHourPortion * 100)}%</p>
-        <Range value={date.seconds()} min={0} max={60} />
-        <p><strong>Seconds / Hour:</strong> {date.seconds() + (date.minutes() * 60)} / {secondsInHour} {Math.round(secondsInHourPortion * 100)}%</p>
-        <Range value={date.seconds() + (date.minutes() * 60)} min={0} max={60 * 60} />
-        <p><strong>Seconds / Day:</strong> {time} / {secondsInDay} {Math.round(secondsInDayPortion * 100)}%</p>  
-        <Range value={time} min={0} max={60 * 60 * 24} />
-      </Time>
-      
-      <Footer>
-        <Range value={time} onChange={e => setTime(e.target.value)} min={0} max={secondsInDay} />
-      </Footer>
-    </Dashboard>
+    <ColorView timestamp={date.valueOf()}>
+      {hsl => (
+        <Dashboard>
+          <Header>
+            <h1>{timePretty}</h1>
+            <Button onClick={() => setIsPlaying(!isPlaying)}>
+              { isPlaying ? "Pause" : "Play" }
+            </Button>
+          </Header>
+    
+          <Colors>
+            <p><strong>Hue:</strong> {Math.round(hsl.hue)}</p>
+            <Range value={hsl.hue} min={0} max={360} />
+            <p><strong>Saturation:</strong> {Math.round(hsl.saturation)}</p>
+            <Range value={hsl.saturation} min={0} max={100} />
+            <p><strong>Lightness:</strong> {Math.round(hsl.lightness)}</p>
+            <Range value={hsl.lightness} min={0} max={100} />
+          </Colors>
+    
+          <Time>
+            <p><strong>Seconds / Minute:</strong> {date.seconds()} / {60} {Math.round(secondsInHourPortion * 100)}%</p>
+            <Range value={date.seconds()} min={0} max={60} />
+            <p><strong>Seconds / Hour:</strong> {date.seconds() + (date.minutes() * 60)} / {secondsInHour} {Math.round(secondsInHourPortion * 100)}%</p>
+            <Range value={date.seconds() + (date.minutes() * 60)} min={0} max={60 * 60} />
+            <p><strong>Seconds / Day:</strong> {time} / {secondsInDay} {Math.round(secondsInDayPortion * 100)}%</p>  
+            <Range value={time} min={0} max={60 * 60 * 24} />
+          </Time>
+          
+          <Footer>
+            <Range value={time} onChange={e => setTime(e.target.value)} min={0} max={secondsInDay} />
+          </Footer>
+        </Dashboard>
+      )}
+    </ColorView>
   )
 }
 

@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 
-const getTime = (format = 'h:mm A MMM D') => moment().format(format)
-
-const Time = ({ format }) => {
-  const [time, setTime] = useState(getTime(format))
+const Time = ({ format = 'h:mm A MMM D', children }) => {
+  const [timestamp, setTimestamp] = useState(moment().valueOf())
+  const time = moment(timestamp).format(format)
   
   useEffect(() => {
     const timer = setInterval(() =>
-      setTime(getTime(format))
+      setTimestamp(moment().valueOf())
     , 1000)
     return () => clearInterval(timer)
   })
 
-  return time
+  return children ? (
+    <>
+      {time}
+      {children(timestamp)}
+    </>
+  ) : time
 }
 
 export default Time

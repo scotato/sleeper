@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import GlobalStyle from './GlobalStyle'
 import Time from './Time'
 import TimeVisualizer from './TimeVisualizer'
-import ColorBox from './ColorBox'
+import ColorView from './ColorView'
 
 const Dashboard = styled.main`
   font-size: 20vw;
@@ -30,8 +30,9 @@ function App() {
         ? <TimeVisualizer  />
         : (
           <Dashboard>
-            <Time format="h:mm" />
-            <ColorBox />
+            <Time format="h:mm">
+              {timestamp => <ColorView timestamp={timestamp} />}
+            </Time>
           </Dashboard>
         )
       }
