@@ -7,10 +7,10 @@ const options = {
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
   fontFamilyMonospace:
     'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-  fontSizeBase: '20vw',
+  fontSizeBase: `${24 / 1280 * 100}vw`,
   fontWeightBase: 400,
   lineHeightBase: 1.5,
-  bodyColor: 'rgb(200, 200, 200)',
+  bodyColor: 'rgba(255, 255, 255, 0.75)',
   bodyBg: 'rgb(25, 25, 25)',
 }
 
