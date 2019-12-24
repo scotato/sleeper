@@ -18,6 +18,11 @@ const rebootCss = reboot(options)
 
 const GlobalStyle = createGlobalStyle`
   ${rebootCss}
+
+  html, body {
+    will-change: background;
+    transition: background 0.2s ease-out;
+  }
   
   #root {
     display: flex;
