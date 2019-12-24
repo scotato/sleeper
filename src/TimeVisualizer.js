@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import moment from 'moment'
 import ColorView from './ColorView'
 
+import { SECONDSPERMINUTE, SECONDSPERHOUR, SECONDSPERDAY } from './Time'
+
 const Dashboard = styled.main`
   display: grid;
   position: fixed;
@@ -61,10 +63,6 @@ const Footer = styled.footer`
   grid-area: footer;
 `
 
-// 0h - 24h
-// brightest at 12h
-// 0h 0l - 12h 1l - 2h 0l
-
 const dateToSeconds = date => 
   date.seconds() + (date.minutes() * 60) + (date.hours() * 60 * 60)
 
@@ -75,30 +73,10 @@ const TimeVisualizer = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const date = moment().hours(0).minutes(0).seconds(time)
   const timePretty = date.format('h:mm:ss A')
-  
-  const secondsInMinute = 60
-  const minutesInHour = 60
-  const hoursInDay = 24
-  // const daysInMonth = moment().daysInMonth()
-  // const monthsInYear = 12
 
-  const secondsInHour = secondsInMinute * minutesInHour
-  const secondsInDay = secondsInHour * hoursInDay
-  // const secondsInMonth = secondsInDay * daysInMonth
-  // const secondsInYear = secondsInMonth * monthsInYear
-
-  // const minutesInDay = minutesInHour * hoursInDay
-  // const minutesInMonth = minutesInDay * daysInMonth
-  // const minutesInYear = minutesInMonth * monthsInYear
-
-  // const hoursInMonth = hoursInDay * daysInMonth
-  // const hoursInYear = hoursInMonth * monthsInYear
-
-  // const daysInYear = daysInMonth * monthsInYear
-
-  // const secondsInMinutePortion = timeMoment.seconds() / secondsInMinute
-  const secondsInHourPortion = (date.seconds() + (date.minutes() * secondsInMinute)) / secondsInHour
-  const secondsInDayPortion = (date.seconds() + (date.minutes() * secondsInMinute) + (date.hours() * secondsInHour)) / secondsInDay
+  // const secondsPerMinutePortion = timeMoment.seconds() / secondsPerMinute
+  const secondsPerHourPortion = (date.seconds() + (date.minutes() * SECONDSPERMINUTE)) / SECONDSPERHOUR
+  const secondsPerDayPortion = (date.seconds() + (date.minutes() * SECONDSPERMINUTE) + (date.hours() * SECONDSPERHOUR)) / SECONDSPERDAY
 
   const timeMax = 86400
   
@@ -131,16 +109,16 @@ const TimeVisualizer = () => {
           </Colors>
     
           <Time>
-            <p><strong>Seconds / Minute:</strong> {date.seconds()} / {60} {Math.round(secondsInHourPortion * 100)}%</p>
+            <p><strong>Seconds / Minute:</strong> {date.seconds()} / {60} {Math.round(secondsPerHourPortion * 100)}%</p>
             <Range value={date.seconds()} min={0} max={60} />
-            <p><strong>Seconds / Hour:</strong> {date.seconds() + (date.minutes() * 60)} / {secondsInHour} {Math.round(secondsInHourPortion * 100)}%</p>
+            <p><strong>Seconds / Hour:</strong> {date.seconds() + (date.minutes() * 60)} / {SECONDSPERHOUR} {Math.round(secondsPerHourPortion * 100)}%</p>
             <Range value={date.seconds() + (date.minutes() * 60)} min={0} max={60 * 60} />
-            <p><strong>Seconds / Day:</strong> {time} / {secondsInDay} {Math.round(secondsInDayPortion * 100)}%</p>  
+            <p><strong>Seconds / Day:</strong> {time} / {SECONDSPERDAY} {Math.round(secondsPerDayPortion * 100)}%</p>  
             <Range value={time} min={0} max={60 * 60 * 24} />
           </Time>
           
           <Footer>
-            <Range value={time} onChange={e => setTime(e.target.value)} min={0} max={secondsInDay} />
+            <Range value={time} onChange={e => setTime(e.target.value)} min={0} max={SECONDSPERDAY} />
           </Footer>
         </Dashboard>
       )}

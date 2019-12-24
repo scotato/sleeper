@@ -2,47 +2,27 @@ import React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import moment from 'moment'
 
-// const dateToSeconds = date => 
-//   date.seconds() + (date.minutes() * 60) + (date.hours() * 60 * 60)
+import { SECONDSPERMINUTE, SECONDSPERHOUR, SECONDSPERDAY } from './Time'
 
 const getHSL = timestamp => {
   const date = moment(timestamp)
-  // const dateSeconds = dateToSeconds(date)
-  const secondsInMinute = 60
-  const minutesInHour = 60
-  const hoursInDay = 24
-  // const daysInMonth = moment().daysInMonth()
-  // const monthsInYear = 12
+  
+  // const secondsPerMinutePortion = date.seconds() / SECONDSPERMINUTE
+  // const secondsPerHourPortion = (date.seconds() + (date.minutes() * SECONDSPERMINUTE)) / SECONDSPERHOUR
+  const secondsPerDayPortion = (date.seconds() + (date.minutes() * SECONDSPERMINUTE) + (date.hours() * SECONDSPERHOUR)) / SECONDSPERDAY
+  const saturationPortion = 0.5 - ((Math.abs((12 * SECONDSPERHOUR) - (date.seconds() + (date.minutes() * SECONDSPERMINUTE) + (date.hours() * SECONDSPERHOUR)))) / SECONDSPERDAY)
+  const lightnessPortion = 0.5 - ((Math.abs((12 * SECONDSPERHOUR) - (date.seconds() + (date.minutes() * SECONDSPERMINUTE) + (date.hours() * SECONDSPERHOUR)))) / SECONDSPERDAY)
 
-  const secondsInHour = secondsInMinute * minutesInHour
-  const secondsInDay = secondsInHour * hoursInDay
-  // const secondsInMonth = secondsInDay * daysInMonth
-  // const secondsInYear = secondsInMonth * monthsInYear
-
-  // const minutesInDay = minutesInHour * hoursInDay
-  // const minutesInMonth = minutesInDay * daysInMonth
-  // const minutesInYear = minutesInMonth * monthsInYear
-
-  // const hoursInMonth = hoursInDay * daysInMonth
-  // const hoursInYear = hoursInMonth * monthsInYear
-
-  // const daysInYear = daysInMonth * monthsInYear
-
-  // const secondsInMinutePortion = timeMoment.seconds() / secondsInMinute
-  const secondsInHourPortion = (date.seconds() + (date.minutes() * secondsInMinute)) / secondsInHour
-  const secondsInDayPortion = (date.seconds() + (date.minutes() * secondsInMinute) + (date.hours() * secondsInHour)) / secondsInDay
-
-  const hueMin = 0 // secon
-  const hueMax = 360 // month / day / minute
-  const saturationMin = 30 // day
-  const saturationMax = 100 // day
-  const lightnessMin = 30 // day
-  const lightnessMax = 70 // day
-
-  const hue = secondsInDayPortion * hueMax
-  const saturation = (secondsInDayPortion * 70) + saturationMin
-  const lightness = (secondsInDayPortion * 40) + lightnessMin
-  console.log(hue, saturation, lightness, timestamp, date.valueOf())
+  const hueMin = 0
+  const hueMax = 360
+  const saturationMin = 30
+  const saturationMax = 100
+  const lightnessMin = 30
+  const lightnessMax = 70
+  
+  const hue = secondsPerDayPortion * hueMax
+  const saturation = (saturationPortion * (saturationMax - saturationMin)) + saturationMin // highest saturation at 12
+  const lightness = (lightnessPortion * (lightnessMax - lightnessMin)) + lightnessMin // highest lightness at 12
 
   return {
     hue,
