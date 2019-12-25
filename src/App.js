@@ -6,7 +6,7 @@ import TimeVisualizer from './TimeVisualizer'
 import ColorView from './ColorView'
 
 const Dashboard = styled.main`
-  font-size: 20vw;
+  font-size: 16vw;
 `
 
 const VisualizeButton = styled.button`

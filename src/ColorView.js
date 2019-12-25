@@ -15,7 +15,7 @@ const getHSL = timestamp => {
 
   const hueMin = 0
   const hueMax = 360
-  const saturationMin = 30
+  const saturationMin = 75
   const saturationMax = 100
   const lightnessMin = 30
   const lightnessMax = 70
@@ -44,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const gradient = hsl => `linear-gradient(0deg, ${hslString(hsl)}, ${hslString({
+const gradient = hsl => `linear-gradient(${hsl.hue}deg, ${hslString(hsl)}, ${hslString({
   hue: hsl.hue + 90,
   saturation: hsl.saturation,
   lightness: hsl.lightness
