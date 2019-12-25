@@ -40,17 +40,24 @@ const getHSL = timestamp => {
 
 const GlobalStyle = createGlobalStyle`
   html, body {
-    background: ${props => props.background};
+    background: ${props => gradient(props.hsl)};
   }
 `
+
+const gradient = hsl => `linear-gradient(0deg, ${hslString(hsl)}, ${hslString({
+  hue: hsl.hue + 90,
+  saturation: hsl.saturation,
+  lightness: hsl.lightness
+})})`
+const hslString = ({ hue, saturation, lightness}) => `hsl(${hue}, ${saturation}%, ${lightness}%)`
 
 export default ({ timestamp, children }) => {
   const hsl = getHSL(timestamp)
 
   return children ? (
     <>
-      <GlobalStyle background={hsl.string} />
+      <GlobalStyle hsl={hsl} />
       {children(hsl)}
     </>
-  ) : <GlobalStyle background={hsl.string} />
+  ) : <GlobalStyle hsl={hsl} />
 }

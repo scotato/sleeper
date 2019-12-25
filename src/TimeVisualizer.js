@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import moment from 'moment'
 import ColorView from './ColorView'
 
-import { SECONDSPERMINUTE, SECONDSPERHOUR, SECONDSPERDAY } from './Time'
+import { SECONDSPERMINUTE, SECONDSPERHOUR, SECONDSPERDAY, dateToSeconds } from './Time'
 
 const Dashboard = styled.main`
   display: grid;
@@ -62,9 +62,6 @@ const Footer = styled.footer`
   flex-direction: column;
   grid-area: footer;
 `
-
-const dateToSeconds = date => 
-  date.seconds() + (date.minutes() * 60) + (date.hours() * 60 * 60)
 
 const TimeVisualizer = () => {
   const now = moment()
