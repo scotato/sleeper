@@ -81,7 +81,7 @@ const TimeVisualizer = () => {
   useEffect(() => {
     const timer = setInterval(() =>
       isPlaying && setTime(time >= timeMax ? 0 : time + 100)
-    , 60)
+    , 27)
     return () => clearInterval(timer)
   })
 

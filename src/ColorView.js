@@ -4,38 +4,46 @@ import moment from 'moment'
 
 import { SECONDSPERMINUTE, SECONDSPERHOUR, SECONDSPERDAY } from './Time'
 
+export const GRADIENTOFFSET = 30
+export const GRADIENTROTATION = 60
+export const HUEMIN = 0
+export const HUEMAX = 360
+export const SATURATIONMIN = 75
+export const SATURATIONMAX = 85
+export const LIGHTNESSMIN = 10
+export const LIGHTNESSMAX = 50
+
+export const gradient = hsl => `linear-gradient(
+  ${hsl.hue}deg, 
+  ${hslString({
+    hue: hsl.hue + GRADIENTOFFSET,
+    saturation: hsl.saturation,
+    lightness: hsl.lightness
+  })}, 
+  ${hslString({
+    hue: hsl.hue + GRADIENTOFFSET + GRADIENTROTATION,
+    saturation: hsl.saturation,
+    lightness: hsl.lightness
+  })})
+`
+
+export const hslString = ({ hue, saturation, lightness}) => `hsl(${hue}, ${saturation}%, ${lightness}%)`
+
 const getHSL = timestamp => {
   const date = moment(timestamp)
+  const dateSeconds = date.seconds() + (date.minutes() * SECONDSPERMINUTE) + (date.hours() * SECONDSPERHOUR)
   
   // const secondsPerMinutePortion = date.seconds() / SECONDSPERMINUTE
   // const secondsPerHourPortion = (date.seconds() + (date.minutes() * SECONDSPERMINUTE)) / SECONDSPERHOUR
-  const secondsPerDayPortion = (date.seconds() + (date.minutes() * SECONDSPERMINUTE) + (date.hours() * SECONDSPERHOUR)) / SECONDSPERDAY
-  const saturationPortion = 0.5 - ((Math.abs((12 * SECONDSPERHOUR) - (date.seconds() + (date.minutes() * SECONDSPERMINUTE) + (date.hours() * SECONDSPERHOUR)))) / SECONDSPERDAY)
-  const lightnessPortion = 0.5 - ((Math.abs((12 * SECONDSPERHOUR) - (date.seconds() + (date.minutes() * SECONDSPERMINUTE) + (date.hours() * SECONDSPERHOUR)))) / SECONDSPERDAY)
-
-  const hueMin = 0
-  const hueMax = 360
-  const saturationMin = 75
-  const saturationMax = 100
-  const lightnessMin = 30
-  const lightnessMax = 70
+  const secondsPerDayPortion = dateSeconds / SECONDSPERDAY
+  const saturationPortion = 1 - (2 * (Math.abs(12 * SECONDSPERHOUR - dateSeconds)) / SECONDSPERDAY)
+  const lightnessPortion = 1 - (2 * (Math.abs(12 * SECONDSPERHOUR - dateSeconds)) / SECONDSPERDAY)
   
-  const hue = secondsPerDayPortion * hueMax
-  const saturation = (saturationPortion * (saturationMax - saturationMin)) + saturationMin // highest saturation at 12
-  const lightness = (lightnessPortion * (lightnessMax - lightnessMin)) + lightnessMin // highest lightness at 12
-
-  return {
-    hue,
-    hueMin,
-    hueMax,
-    saturation,
-    saturationMin,
-    saturationMax,
-    lightness,
-    lightnessMin,
-    lightnessMax,
-    string: `hsl(${hue}, ${saturation}%, ${lightness}%)`
-  }
+  const hue = (secondsPerDayPortion * (HUEMAX - HUEMIN)) + HUEMIN
+  const saturation = (saturationPortion * (SATURATIONMAX - SATURATIONMIN)) + SATURATIONMIN // highest saturation at 12
+  const lightness = (lightnessPortion * (LIGHTNESSMAX - LIGHTNESSMIN)) + LIGHTNESSMIN // highest lightness at 12
+  
+  return { hue, saturation, lightness }
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -43,13 +51,6 @@ const GlobalStyle = createGlobalStyle`
     background: ${props => gradient(props.hsl)};
   }
 `
-
-const gradient = hsl => `linear-gradient(${hsl.hue}deg, ${hslString(hsl)}, ${hslString({
-  hue: hsl.hue + 90,
-  saturation: hsl.saturation,
-  lightness: hsl.lightness
-})})`
-const hslString = ({ hue, saturation, lightness}) => `hsl(${hue}, ${saturation}%, ${lightness}%)`
 
 export default ({ timestamp, children }) => {
   const hsl = getHSL(timestamp)
