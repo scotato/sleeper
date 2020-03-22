@@ -10,8 +10,10 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
+    "react-spring": "8.0.27",
     "styled-components": "4.4.1",
-    "styled-reboot": "4.0.3"
+    "styled-reboot": "4.0.3",
+    "use-dark-mode": "2.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
