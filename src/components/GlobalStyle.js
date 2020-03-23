@@ -1,27 +1,28 @@
 import { createGlobalStyle } from 'styled-components'
 import reboot from 'styled-reboot'
 
-const options = {
+const rebootCss = reboot({
   black: '#000',
   fontFamilyBase:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
   fontFamilyMonospace:
     'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-  fontSizeBase: `${24 / 1280 * 100}vw`,
   fontWeightBase: 400,
   lineHeightBase: 1.5,
-  bodyColor: 'rgba(255, 255, 255, 0.75)',
-  bodyBg: 'rgb(25, 25, 25)',
-}
-
-const rebootCss = reboot(options)
+  bodyColor: 'rgba(255, 255, 255, 0.75)'
+})
 
 const GlobalStyle = createGlobalStyle`
   ${rebootCss}
 
-  html, body {
+  body {
     will-change: background;
     transition: background 0.2s ease-out;
+    background-color: rgb(250, 250, 250);
+
+    &.dark-mode {
+      background-color: rgb(25, 25, 25);
+    }
   }
   
   #root {
