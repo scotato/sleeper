@@ -1,8 +1,7 @@
 {
-  "short_name": "new tab dashboard",
-  "name": "new tab dashboard",
+  "short_name": "sleeper",
+  "name": "sleeper",
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'sha256-OczeX1j8ex0EPdEd6hb69UzJcpHhEUqctX6rBOxKbLg='",
   "chrome_url_overrides" : {
     "newtab": "index.html"
   },
