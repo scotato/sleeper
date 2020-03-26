@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useWindowSize } from "@reach/window-size"
 import { useSpring, animated } from 'react-spring'
+import blobs from 'blobs'
+import cheerio from 'cheerio'
 import styled from 'styled-components'
 
 import { useTimestamp, timestampToClock, timestampToCalendar } from './Time'
@@ -75,47 +77,103 @@ export default () => {
   const [ large, setLarge ] = useState(false)
   const { number } = useSpring({ number: 200, from: { number: 0 } })
   const { width, height } = useWindowSize()
-  const minSize = width > height ? height : width
+  const square = width > height ? height : width
   const cx = width / 2
   const cy = height / 2
-  const spring = useSpring({ r: large ? minSize / 3 : minSize /  4 })
+  const blobWidth = large ? square / 3 : square /  4
+  const spring = useSpring({ r: blobWidth })
   const clock = timestampToClock(timestamp)
   const calendar = timestampToCalendar(timestamp)
+  const blobStartX = cx / 4
+  const blobStartY = cy / 5
+  const blobBottomY = cy / 4
+  
+  const blob = blobs({
+    size: 600,
+    complexity: 0.2,
+    contrast: 0.4,
+    color: "#ec576b",
+    stroke: {
+       width: 0,
+       color: "black",
+    },
+    guides: false,
+    seed: `${timestamp}`,
+ })
 
   return (
-    <svg width={width} height={height}>
-      <defs>
-        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style={{stopColor: 'rgb(255,0,0)', stopOpacity: 1}} />
-          <stop offset="100%" style={{stopColor: 'rgb(255,255,0)', stopOpacity: 1}} />
-        </linearGradient>
-      </defs>
+    <div dangerouslySetInnerHTML={{ __html: blob}} />
+    // <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg">
+    //   <defs>
+    //     <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+    //       <stop offset="0%" style={{stopColor: 'rgb(255,0,0)', stopOpacity: 1}} />
+    //       <stop offset="100%" style={{stopColor: 'rgb(255,255,0)', stopOpacity: 1}} />
+    //     </linearGradient>
+    //   </defs>
 
-      <Wave
-        fill="url(#gradient)"
-        d={number.interpolate(n => `
-          M 0,${height}
-          L 0,${height * 0.75}
-          C 120,96 240,160 ${width},${height * 0.75}
-          L ${width},${height} z
-        `)}
-      />
+    //   <Wave
+    //     fill="url(#gradient)"
+    //     d={number.interpolate(n => `
+    //       M 0,${height}
+    //       L 0,${height * 0.75}
+    //       C 120,96 240,160 ${width},${height * 0.75}
+    //       L ${width},${height} z
+    //     `)}
+    //   />
 
-      <Circle
-        cx={cx}
-        cy={cy}
-        style={spring}
-        fill="url(#gradient)"
-        onClick={e => { e.stopPropagation(); setLarge(!large) }}
-      />
 
-      <Clock x={cx} y={cy + 16} startOffset="50%" textAnchor="middle">
-        {clock}
-      </Clock>
+    //   <g transform={`translate(${cx},${cy})`}>
+    //     {/* <path
+    //       fill="url(#gradient)"
+    //       fillOpacity={0.8}
+    //       d={`
+    //         M ${square / 5},${square / 8}
+    //         C ${square / 7},${square / 4}, -${square / 7},${square / 4}, -${square / 5},${square / 8}
+    //         C -${square / 3},0, -${square / 7},-${square / 4},0,-${square / 4}
+    //         C ${square / 7},-${square / 4}, ${square / 3},0, ${square / 5},${square / 8}
+    //         Z
+    //       `}
+    //     /> */}
 
-      <Calendar x={cx} y={cy + 48} startOffset="50%" textAnchor="middle">
-        {calendar}
-      </Calendar>
-    </svg>
+    //     <path
+    //       fill="url(#gradient)"
+    //       fillOpacity={0.8}
+    //       d={`
+    //         M ${square / 5},${square / 8}
+    //         C -${square / 5},${square / 8} -${square / 5},${square / 8} -${square / 5},${square / 8}
+    //         C 0,-${square / 4} 0,-${square / 4} 0,-${square / 4}
+    //         C ${square / 5},${square / 8} ${square / 5},${square / 8} ${square / 5},${square / 8}
+    //         Z
+    //       `}
+    //     />
+
+    //     {/* <path
+    //       fill="url(#gradient)"
+    //       fillOpacity={0.8}
+    //       d={`
+    //         M 129,75
+    //         C 86,150, -86,150, -129,75
+    //         C -173,0, -86,-150,0,-150
+    //         C 86,-150, 173,0, 129,75
+    //         Z
+    //       `}
+    //     /> */}
+        
+
+    //   {/* <Circle
+    //     style={spring}
+    //     fill="url(#gradient)"
+    //     onClick={e => { e.stopPropagation(); setLarge(!large) }}
+    //   /> */}
+    //   </g>
+
+    //   <Clock x={cx} y={cy + 16} startOffset="50%" textAnchor="middle">
+    //     {clock}
+    //   </Clock>
+
+    //   <Calendar x={cx} y={cy + 48} startOffset="50%" textAnchor="middle">
+    //     {calendar}
+    //   </Calendar>
+    // </svg>
   )
 }
