@@ -20,36 +20,38 @@ export const useTimestamp = () => {
   return timestamp
 }
 
-const Clock = styled.text`
-  font-size: 96px;
+const TimeText = styled.text.attrs({
+  startOffset: '50%',
+  textAnchor: 'middle'
+})`
   fill: white;
   line-height: 1;
   user-select: none;
+`
+
+const Clock = styled(TimeText)`
+  font-size: 96px;
   font-weight: 200;
 `
 
-const Calendar = styled.text`
+const Calendar = styled(TimeText)`
   font-size: 20px;
-  fill: white;
-  line-height: 1;
-  user-select: none;
 `
 
 export default () => {
-  const { width, height } = useWindowSize()
+  const { width } = useWindowSize()
   const timestamp = useTimestamp()
   const clock = timestampToClock(timestamp)
   const calendar = timestampToCalendar(timestamp)
   const cx = width / 2
-  const cy = height / 2
 
   return (
     <>
-      <Clock x={cx} y={cy + 16} startOffset="50%" textAnchor="middle">
+      <Clock x={cx} y={128 + 16}>
         {clock}
       </Clock>
 
-      <Calendar x={cx} y={cy + 48} startOffset="50%" textAnchor="middle">
+      <Calendar x={cx} y={128 + 48}>
         {calendar}
       </Calendar>
     </>
