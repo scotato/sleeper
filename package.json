@@ -8,7 +8,6 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "blobs": "1.1.0",
-    "cheerio": "1.0.0-rc.3",
     "moment": "2.24.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
