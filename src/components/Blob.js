@@ -1,8 +1,17 @@
 import React from 'react'
 import { useSpring, animated } from 'react-spring'
+import { useWindowSize } from "@reach/window-size"
 import blobs from 'blobs'
 
 export default ({ size, complexity, contrast, gradient, cx, cy }) => {
+  const { width, height } = useWindowSize()
+  const length = width > height ? width : height
+  const config = {
+    mass: size / length * 400,
+    tension: 250,
+    friction: 250,
+  }
+  
   const randBlob = () => blobs.editable({
     size,
     complexity,
@@ -11,9 +20,7 @@ export default ({ size, complexity, contrast, gradient, cx, cy }) => {
     guides: false,
   }).children[0].children[0].attributes.d
 
-  const [{ shape }, set] = useSpring(() => ({shape: randBlob(), config: { 
-    mass: 500, tension: 500, friction: 500
-  }}))
+  const [{ shape }, set] = useSpring(() => ({ shape: randBlob(), config }))
 
   set({shape: randBlob()})
 
