@@ -8,10 +8,10 @@ export default () => {
   const length = width > height ? width : height
 
   const size = {
-    xl: length * 1.25,
-    lg: length * 1.00,
-    md: length * 0.75,
-    sm: length * 0.66,
+    xl: length * 2,
+    lg: length * 1.50,
+    md: length * 1,
+    sm: length * 0.75,
     xs: length * 0.50
   }
 
@@ -19,20 +19,20 @@ export default () => {
     <>
       <Blob
         gradient={0}
-        size={size.xl}
-        complexity={1}
-        contrast={0.3}
-        cx={width * 0.66}
-        cy={height * -0.1}
+        size={size.lg}
+        complexity={0.75}
+        contrast={0.4}
+        cx={width * 0.8}
+        cy={height * 0}
       />
 
       <Blob
         gradient={0}
-        size={size.lg}
+        size={size.xl}
         complexity={0.75}
-        contrast={0.3}
-        cx={width}
-        cy={height * 0.2}
+        contrast={0.4}
+        cx={width * 0.6}
+        cy={height * -0.5}
       />
 
       <Blob
@@ -41,7 +41,7 @@ export default () => {
         complexity={0.75}
         contrast={0.3}
         cx={width * 0.8}
-        cy={height * -0.1}
+        cy={height * -0.25}
       />
 
       <Blob
@@ -49,8 +49,8 @@ export default () => {
         size={size.sm}
         complexity={0.5}
         contrast={0.3}
-        cx={0}
-        cy={height * 0.5}
+        cx={width * -0.2}
+        cy={height * 0.56}
       />
 
       <Blob
@@ -58,26 +58,26 @@ export default () => {
         size={size.sm}
         complexity={0.75}
         contrast={0.3}
-        cx={0}
-        cy={height * 0.5}
+        cx={width * -0.2}
+        cy={height * 0.66}
       />
 
       <Blob
         gradient={0}
-        size={size.xs}
+        size={size.sm}
         complexity={0.5}
         contrast={0.3}
-        cx={width / 2}
-        cy={height}
+        cx={width * 0.45}
+        cy={height * 1.25}
       />
 
       <Blob
         gradient={0}
-        size={size.xs}
+        size={size.sm}
         complexity={0.75}
         contrast={0.3}
-        cx={width / 2}
-        cy={height}
+        cx={width * 0.55}
+        cy={height * 1.25}
       />
     </>
   )
