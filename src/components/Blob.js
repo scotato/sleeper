@@ -24,21 +24,39 @@ export default () => {
   set({shape: randBlob()})
 
   return (
-    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="gradient0" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style={{stopColor: 'rgb(255,0,0)', stopOpacity: 1}} />
-          <stop offset="100%" style={{stopColor: 'rgb(255,255,0)', stopOpacity: 1}} />
-        </linearGradient>
-      </defs>
-
-      <g transform={`translate(${cx - (square / 2)},${cy - (square / 2)})`}>
-        <animated.path
-          fill="url(#gradient0)"
-          fillOpacity={0.8}
-          d={shape}
-        />
-      </g>
-    </svg>
+    <g transform={`translate(${cx - (square / 2)},${cy - (square / 2)})`}>
+      <animated.path
+        fill="url(#gradient0)"
+        fillOpacity={0.8}
+        d={shape}
+      />
+    </g>
   )
 }
+
+// const groups = [{
+  //   id: 0,
+  //   gradient: 0,
+  //   size: square,
+  //   complexity: 0.2,
+  //   contrast: 0.4,
+  //   cx: 0,
+  //   cy: 0,
+  // }, {
+  //   id: 1,
+  //   gradient: 0,
+  //   size: square * 2,
+  //   complexity: 0.4,
+  //   contrast: 0.6,
+  //   cx: cx / 2,
+  //   cy: cy / 2,
+  // }, {
+  //   id: 2,
+  //   gradient: 0,
+  //   size: square / 2,
+  //   complexity: 0.2,
+  //   contrast: 0.4,
+  //   cx: cx * -1 / 4,
+  //   cy: cy * -1 / 4,
+  // }]
+

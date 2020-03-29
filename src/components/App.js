@@ -1,19 +1,12 @@
 import React from 'react'
-import useDarkMode from 'use-dark-mode'
 
-import Layout from './Layout'
-// import Time from './Time'
-import ColorView from './ColorView'
+import Frame from './Frame'
+import Blob from './Blob'
+import Time from './Time'
 
-function App() {
-  const { toggle } = useDarkMode()
-  
-  return (
-    <Layout onClick={toggle}>
-      {/* <Time format="h:mm" /> */}
-      <ColorView />
-    </Layout>
-  )
-}
-
-export default App
+export default () => (
+  <Frame>
+    <Blob />
+    <Time />
+  </Frame>
+)
