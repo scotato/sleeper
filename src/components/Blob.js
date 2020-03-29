@@ -1,18 +1,12 @@
 import React from 'react'
-import { useWindowSize } from "@reach/window-size"
 import { useSpring, animated } from 'react-spring'
 import blobs from 'blobs'
 
-export default () => {
-  const { width, height } = useWindowSize()
-  const square = width > height ? height : width
-  const cx = width / 2
-  const cy = height / 2
-
+export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   const randBlob = () => blobs.editable({
-    size: square,
-    complexity: 0.2,
-    contrast: 0.4,
+    size,
+    complexity,
+    contrast,
     color: "#fff",
     guides: false,
   }).children[0].children[0].attributes.d
@@ -24,39 +18,12 @@ export default () => {
   set({shape: randBlob()})
 
   return (
-    <g transform={`translate(${cx - (square / 2)},${cy - (square / 2)})`}>
+    <g transform={`translate(${cx - (size / 2)},${cy - (size / 2)})`}>
       <animated.path
-        fill="url(#gradient0)"
+        fill={`url(#gradient${gradient})`}
         fillOpacity={0.8}
         d={shape}
       />
     </g>
   )
 }
-
-// const groups = [{
-  //   id: 0,
-  //   gradient: 0,
-  //   size: square,
-  //   complexity: 0.2,
-  //   contrast: 0.4,
-  //   cx: 0,
-  //   cy: 0,
-  // }, {
-  //   id: 1,
-  //   gradient: 0,
-  //   size: square * 2,
-  //   complexity: 0.4,
-  //   contrast: 0.6,
-  //   cx: cx / 2,
-  //   cy: cy / 2,
-  // }, {
-  //   id: 2,
-  //   gradient: 0,
-  //   size: square / 2,
-  //   complexity: 0.2,
-  //   contrast: 0.4,
-  //   cx: cx * -1 / 4,
-  //   cy: cy * -1 / 4,
-  // }]
-
