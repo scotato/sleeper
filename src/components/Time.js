@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 import moment from 'moment'
+import { useWindowSize } from '@reach/window-size'
 
 export const dateToSeconds = date => 
   date.seconds() + (date.minutes() * 60) + (date.hours() * 60 * 60)
@@ -18,41 +20,41 @@ export const useTimestamp = () => {
   return timestamp
 }
 
-export default () => null
+const Clock = styled.text`
+  font-size: 96px;
+  fill: white;
+  line-height: 1;
+  user-select: none;
+  font-weight: 200;
+`
 
-// const timestamp = useTimestamp()
-// const clock = timestampToClock(timestamp)
-// const calendar = timestampToCalendar(timestamp)
+const Calendar = styled.text`
+  font-size: 20px;
+  fill: white;
+  line-height: 1;
+  user-select: none;
+`
 
-// import styled from 'styled-components'
+export default () => {
+  const { width, height } = useWindowSize()
+  const timestamp = useTimestamp()
+  const clock = timestampToClock(timestamp)
+  const calendar = timestampToCalendar(timestamp)
+  const cx = width / 2
+  const cy = height / 2
 
-// import { useTimestamp, timestampToClock, timestampToCalendar } from './Time'
+  return (
+    <>
+      <Clock x={cx} y={cy + 16} startOffset="50%" textAnchor="middle">
+        {clock}
+      </Clock>
 
-
-//   <Clock x={cx} y={cy + 16} startOffset="50%" textAnchor="middle">
-//     {clock}
-//   </Clock>
-
-//   <Calendar x={cx} y={cy + 48} startOffset="50%" textAnchor="middle">
-//     {calendar}
-//   </Calendar>
-
-
-// const Clock = styled(animated.text)`
-//   font-size: 96px;
-//   fill: white;
-//   line-height: 1;
-//   user-select: none;
-//   font-weight: 200;
-// `
-
-// const Calendar = styled(animated.text)`
-//   font-size: 20px;
-//   fill: white;
-//   line-height: 1;
-//   user-select: none;
-// `
-
+      <Calendar x={cx} y={cy + 48} startOffset="50%" textAnchor="middle">
+        {calendar}
+      </Calendar>
+    </>
+  )
+}
 
 // export const SECONDSPERMINUTE = 60
 // export const MINUTESPERHOUR = 60
