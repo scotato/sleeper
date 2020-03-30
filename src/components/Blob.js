@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useSpring, animated } from 'react-spring'
 import { useWindowSize } from "@reach/window-size"
-import styled from 'styled-components'
 import blobs from 'blobs'
 import moment from 'moment'
-
-const Group = styled.g``
-const Path = styled(animated.path)``
 
 export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   const { width, height } = useWindowSize()
@@ -47,8 +43,8 @@ export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   set({shape: randBlob()})
 
   return (
-    <Group transform={transform}>
-      <Path fill={fill} d={shape} />
-    </Group>
+    <g transform={transform}>
+      <animated.path fill={fill} d={shape} />
+    </g>
   )
 }
