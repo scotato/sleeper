@@ -20,7 +20,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "zip": "cd build && bestzip ../$npm_package_name-v$npm_package_version.zip *",
+    "clean": "rm *.zip && rm -rf build",
+    "zipBuild": "cd build && bestzip ../$npm_package_name-v$npm_package_version.zip *",
+    "zipSource": "bestzip $npm_package_name-v$npm_package_version-source.zip public src *.md .env *.json *.lock",
+    "zip": "npm run zipBuild && npm run zipSource",
     "bump": "json -I -f public/manifest.json -e \"this.version='$npm_package_version'\"",
     "bundle": "npm run build && npm run zip",
     "test": "react-scripts test",
