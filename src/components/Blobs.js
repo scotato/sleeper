@@ -20,7 +20,7 @@ export default () => {
   return (
     <>
       <Blob
-        gradient={isDarkMode ? 'pinkAlphaRadial' : 'pinkRadial'}
+        gradient={isDarkMode ? 'pinkRadial' : 'pinkRadial'}
         size={size.lg}
         complexity={0.75}
         contrast={0.4}
@@ -29,7 +29,7 @@ export default () => {
       />
 
       <Blob
-        gradient={isDarkMode ? 'orangeAlphaRadial' : 'orangeRadial'}
+        gradient={isDarkMode ? 'purpleAlphaRadial' : 'yellowRadial'}
         size={size.xl}
         complexity={0.75}
         contrast={0.4}
@@ -38,7 +38,7 @@ export default () => {
       />
 
       <Blob
-        gradient={isDarkMode ? 'orangeAlphaRadial' : 'redRadial'}
+        gradient={isDarkMode ? 'purpleAlphaRadial' : 'redRadial'}
         size={size.md}
         complexity={0.75}
         contrast={0.3}
@@ -47,7 +47,7 @@ export default () => {
       />
 
       <Blob
-        gradient={isDarkMode ? 'orangeAlphaRadial' : 'yellowPinkLinear'}
+        gradient={isDarkMode ? 'yellowPinkLinearAlpha' : 'yellowPinkLinear'}
         size={size.sm}
         complexity={0.75}
         contrast={0.3}
@@ -56,7 +56,7 @@ export default () => {
       />
 
       <Blob
-        gradient={isDarkMode ? 'pinkAlphaRadial' : 'yellowRadial'}
+        gradient={isDarkMode ? 'yellowRadial' : 'yellowAlphaRadial'}
         size={size.sm}
         complexity={0.5}
         contrast={0.3}
@@ -74,7 +74,7 @@ export default () => {
       />
 
       <Blob
-        gradient={isDarkMode ? 'purpleAlphaRadial' : 'purpleLinear'}
+        gradient={isDarkMode ? 'purpleLinear' : 'purpleLinear'}
         size={size.sm}
         complexity={0.75}
         contrast={0.3}
