@@ -1,10 +1,12 @@
 import React from 'react'
 import { useWindowSize } from "@reach/window-size"
+import useDarkMode from 'use-dark-mode'
 
 import Blob from './Blob'
 
 export default () => {
   const { width, height } = useWindowSize()
+  const { value: isDarkMode } = useDarkMode()
   const length = width > height ? width : height
 
   const size = {
@@ -18,7 +20,7 @@ export default () => {
   return (
     <>
       <Blob
-        gradient={0}
+        gradient={isDarkMode ? 'orangeAlpha' : 'orange'}
         size={size.lg}
         complexity={0.75}
         contrast={0.4}
@@ -27,7 +29,7 @@ export default () => {
       />
 
       <Blob
-        gradient={0}
+        gradient={isDarkMode ? 'orangeAlpha' : 'orange'}
         size={size.xl}
         complexity={0.75}
         contrast={0.4}
@@ -36,7 +38,7 @@ export default () => {
       />
 
       <Blob
-        gradient={0}
+        gradient={isDarkMode ? 'pinkAlpha' : 'pink'}
         size={size.md}
         complexity={0.75}
         contrast={0.3}
@@ -45,7 +47,7 @@ export default () => {
       />
 
       <Blob
-        gradient={0}
+        gradient={isDarkMode ? 'orangeAlpha' : 'orange'}
         size={size.sm}
         complexity={0.5}
         contrast={0.3}
@@ -54,7 +56,7 @@ export default () => {
       />
 
       <Blob
-        gradient={0}
+        gradient={isDarkMode ? 'pinkAlpha' : 'pink'}
         size={size.sm}
         complexity={0.75}
         contrast={0.3}
@@ -63,7 +65,7 @@ export default () => {
       />
 
       <Blob
-        gradient={0}
+        gradient={isDarkMode ? 'pinkAlpha' : 'pink'}
         size={size.sm}
         complexity={0.5}
         contrast={0.3}
@@ -72,7 +74,7 @@ export default () => {
       />
 
       <Blob
-        gradient={0}
+        gradient={isDarkMode ? 'purpleAlpha' : 'purple'}
         size={size.sm}
         complexity={0.75}
         contrast={0.3}

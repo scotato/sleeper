@@ -10,8 +10,8 @@ export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   const length = width > height ? width : height
   const config = {
     mass: size / length * 400,
-    tension: 250,
-    friction: 250,
+    tension: 350,
+    friction: 350,
   }
   
   // blobs returns an entire SVG structure, we just want the d from the path
@@ -24,6 +24,8 @@ export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   }).children[0].children[0].attributes.d
 
   const [{ shape }, set] = useSpring(() => ({ shape: randBlob(), config }))
+  const transform = `translate(${cx - (size / 2)},${cy - (size / 2)})`
+  const fill = `url(#${gradient})`
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -41,12 +43,8 @@ export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   set({shape: randBlob()})
 
   return (
-    <g transform={`translate(${cx - (size / 2)},${cy - (size / 2)})`}>
-      <animated.path
-        fill={`url(#gradient${gradient})`}
-        fillOpacity={0.8}
-        d={shape}
-      />
+    <g transform={transform}>
+      <animated.path fill={fill} d={shape} />
     </g>
   )
 }

@@ -3,7 +3,7 @@ import { useWindowSize } from '@reach/window-size'
 import useDarkMode from 'use-dark-mode'
 
 import GlobalStyle from './GlobalStyle'
-import Gradient from './Gradient'
+import Gradients from './Gradients'
 
 const SVG = props => {
   const { width, height } = useWindowSize()
@@ -17,10 +17,7 @@ const SVG = props => {
       xmlns="http://www.w3.org/2000/svg"
       onClick={toggle}
     >
-      <defs>
-        <Gradient />
-      </defs>
-
+      <Gradients />
       {props.children}
     </svg>
   )

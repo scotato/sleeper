@@ -18,10 +18,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     will-change: background;
     transition: background 0.2s ease-out;
-    background-color: rgb(250, 250, 250);
+    background-color: #E6E6E6;
 
     &.dark-mode {
-      background-color: rgb(25, 25, 25);
+      background-color: #010101;
     }
   }
   
