@@ -1,6 +1,6 @@
 {
   "name": "new-tab-dashboard",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@reach/window-size": "0.9.0",
