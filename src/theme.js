@@ -1,13 +1,14 @@
 export const color = {
   black: 'hsl(0, 0%, 0%)',
   white: 'hsl(0, 0%, 90%)',
-  yellow: 'hsl(44, 93%, 65%)',
-  orange: 'hsl(23, 83%, 55%)',
-  red: 'hsl(7, 95%, 39%)',
-  blue: 'hsl(44, 93%, 65%)',
-  green: 'hsl(44, 93%, 65%)',
-  pink: 'hsl(352, 72%, 63%)',
-  purple: 'hsl(292, 57%, 65%)',
+  yellow: 'hsl(50, 100%, 50%)',
+  orange: 'hsl(20, 100%, 50%)',
+  red: 'hsl(4, 100%, 50%)',
+  blue: 'hsl(44, 100%, 50%)',
+  green: 'hsl(44, 100%, 50%)',
+  pink: 'hsl(350, 100%, 60%)',
+  purple: 'hsl(290, 100%, 50%)',
+  purpleDark: 'hsl(290, 100%, 20%)',
 }
 
 export default { color }

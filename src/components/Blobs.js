@@ -20,7 +20,7 @@ export default () => {
   return (
     <>
       <Blob
-        gradient={isDarkMode ? 'orangeAlpha' : 'orange'}
+        gradient={isDarkMode ? 'pinkAlphaRadial' : 'pinkRadial'}
         size={size.lg}
         complexity={0.75}
         contrast={0.4}
@@ -29,7 +29,7 @@ export default () => {
       />
 
       <Blob
-        gradient={isDarkMode ? 'orangeAlpha' : 'orange'}
+        gradient={isDarkMode ? 'orangeAlphaRadial' : 'orangeRadial'}
         size={size.xl}
         complexity={0.75}
         contrast={0.4}
@@ -38,34 +38,34 @@ export default () => {
       />
 
       <Blob
-        gradient={isDarkMode ? 'pinkAlpha' : 'pink'}
+        gradient={isDarkMode ? 'orangeAlphaRadial' : 'redRadial'}
         size={size.md}
         complexity={0.75}
         contrast={0.3}
-        cx={width * 0.8}
+        cx={width * 0.9}
         cy={height * -0.25}
       />
 
       <Blob
-        gradient={isDarkMode ? 'orangeAlpha' : 'orange'}
-        size={size.sm}
-        complexity={0.5}
-        contrast={0.3}
-        cx={width * -0.2}
-        cy={height * 0.56}
-      />
-
-      <Blob
-        gradient={isDarkMode ? 'pinkAlpha' : 'pink'}
+        gradient={isDarkMode ? 'orangeAlphaRadial' : 'yellowPinkLinear'}
         size={size.sm}
         complexity={0.75}
         contrast={0.3}
-        cx={width * -0.2}
-        cy={height * 0.66}
+        cx={width * -0.15}
+        cy={height * 0.55}
       />
 
       <Blob
-        gradient={isDarkMode ? 'pinkAlpha' : 'pink'}
+        gradient={isDarkMode ? 'pinkAlphaRadial' : 'yellowRadial'}
+        size={size.sm}
+        complexity={0.5}
+        contrast={0.3}
+        cx={width * -0.175}
+        cy={height * 0.55}
+      />
+
+      <Blob
+        gradient={isDarkMode ? 'pinkAlphaRadial' : 'pinkRadial'}
         size={size.sm}
         complexity={0.5}
         contrast={0.3}
@@ -74,7 +74,7 @@ export default () => {
       />
 
       <Blob
-        gradient={isDarkMode ? 'purpleAlpha' : 'purple'}
+        gradient={isDarkMode ? 'purpleAlphaRadial' : 'purpleLinear'}
         size={size.sm}
         complexity={0.75}
         contrast={0.3}

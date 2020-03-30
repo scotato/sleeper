@@ -3,36 +3,55 @@ import styled from 'styled-components'
 
 export default () => (
   <defs>
-    <RadialGradient id="orange">
-      <Stop offset="0%" color="orange" />
-      <Stop offset="90%" color="yellow" />
-      <Stop offset="100%" color="yellow" />
+    <RadialGradient id="yellowRadial">
+      <Stop offset="0%" color="yellow" opacity={0} />
+      <Stop offset="100%" color="yellow" opacity={0.75} />
     </RadialGradient>
 
-    <RadialGradient id="pink">
-      <Stop offset="0%" color="pink" />
-      <Stop offset="100%" color="pink" />
+    <RadialGradient id="orangeRadial">
+      <Stop offset="0%" color="orange" opacity={0.5} />
+      <Stop offset="100%" color="yellow" opacity={0.9} />
     </RadialGradient>
 
-    <RadialGradient id="purple">
-      <Stop offset="0%" color="purple" />
-      <Stop offset="100%" color="purple" />
+    <RadialGradient id="pinkRadial">
+      <Stop offset="0%" color="orange" opacity={0.5} />
+      <Stop offset="100%" color="pink" opacity={0.9} />
     </RadialGradient>
 
-    <RadialGradient id="orangeAlpha">
+    <RadialGradient id="redRadial">
+      <Stop offset="33%" color="red" opacity={0.75} />
+      <Stop offset="100%" color="orange" opacity={0.5} />
+    </RadialGradient>
+
+    <RadialGradient id="purpleRadial">
+      <Stop offset="0%" color="purple" opacity={0} />
+      <Stop offset="100%" color="purple" opacity={0.9} />
+    </RadialGradient>
+
+    <RadialGradient id="orangeAlphaRadial">
       <Stop offset="0%" color="orange" opacity={0.5} />
       <Stop offset="100%" color="yellow" opacity={0.5} />
     </RadialGradient>
 
-    <RadialGradient id="pinkAlpha">
+    <RadialGradient id="pinkAlphaRadial">
       <Stop offset="0%" color="pink" opacity={0.5} />
       <Stop offset="100%" color="pink" opacity={0.5} />
     </RadialGradient>
 
-    <RadialGradient id="purpleAlpha">
+    <RadialGradient id="purpleAlphaRadial">
       <Stop offset="0%" color="purple" opacity={0.5} />
       <Stop offset="100%" color="purple" opacity={0.5} />
     </RadialGradient>
+
+    <LinearGradient id="yellowPinkLinear" x1="0" x2="0" y1="0" y2="1">
+      <Stop offset="0%" color="yellow" opacity={1} />
+      <Stop offset="100%" color="pink" opacity={1} />
+    </LinearGradient>
+
+    <LinearGradient id="purpleLinear" x1="0" x2="1" y1="0" y2="1">
+      <Stop offset="0%" color="purpleDark" opacity={0.9} />
+      <Stop offset="100%" color="purple" opacity={0.1} />
+    </LinearGradient>
   </defs>
 )
 
@@ -42,7 +61,11 @@ const RadialGradient = props => (
   </radialGradient>
 )
 
+const LinearGradient = props => (
+  <linearGradient {...props} />
+)
+
 const Stop = styled.stop`
-  stop-opacity: ${props => props.opacity || 1};
-  stop-color: ${props => props.theme.color[props.color || 'black']};
+  stop-opacity: ${({ opacity }) => opacity !== undefined ? opacity : 1};
+  stop-color: ${({ theme, color }) => theme.color[color || 'black']};
 `
