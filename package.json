@@ -1,5 +1,5 @@
 {
-  "name": "new-tab-dashboard",
+  "name": "sleeper",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "zip": "cd build && bestzip ../build.zip *",
+    "zip": "cd build && bestzip ../$npm_package_name-v$npm_package_version.zip *",
     "bundle": "npm run build && npm run zip",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -28,4 +28,4 @@ Your app is ready to be deployed!
 
 ### `npm run bundle`
 
-Bundles the app for production to `build.zip`.
+Builds and zips the app for production as `sleeper-vX.X.X.zip`.
