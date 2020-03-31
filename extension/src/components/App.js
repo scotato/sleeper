@@ -1,16 +1,14 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import theme from '../theme'
 
-import Frame from './Frame'
-import Blobs from './Blobs'
+import theme from '../theme'
+import Layout from './Layout'
 import Time from './Time'
 
 export default () => (
   <ThemeProvider theme={theme}>
-    <Frame>
-      <Blobs />
+    <Layout>
       <Time />
-    </Frame>
+    </Layout>
   </ThemeProvider>
 )

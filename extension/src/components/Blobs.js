@@ -3,6 +3,22 @@ import { useWindowSize } from "@reach/window-size"
 import useDarkMode from 'use-dark-mode'
 
 import Blob from './Blob'
+import Gradients from './Gradients'
+
+const SVG = props => {
+  const { width, height } = useWindowSize()
+
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {props.children}
+    </svg>
+  )
+}
 
 export default () => {
   const { width, height } = useWindowSize()
@@ -18,7 +34,8 @@ export default () => {
   }
 
   return (
-    <>
+    <SVG>
+      <Gradients />
       <Blob
         gradient={isDarkMode ? 'pinkRadial' : 'pinkRadial'}
         size={size.lg}
@@ -81,6 +98,6 @@ export default () => {
         cx={width * 0.55}
         cy={height * 1.25}
       />
-    </>
+    </SVG>
   )
 }

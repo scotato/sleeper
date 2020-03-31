@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
-import { useWindowSize } from '@reach/window-size'
 
-export const dateToSeconds = date => 
+export const dateToSeconds = date =>
   date.seconds() + (date.minutes() * 60) + (date.hours() * 60 * 60)
 
 export const timestampToClock = timestamp => moment(timestamp).format('h:mm')
@@ -11,7 +10,7 @@ export const timestampToCalendar = timestamp => moment(timestamp).format('dddd, 
 
 export const useTimestamp = () => {
   const [timestamp, setTimestamp] = useState(moment().valueOf())
-  
+
   useEffect(() => {
     const timer = setInterval(() => setTimestamp(moment().valueOf()), 1000)
     return () => clearInterval(timer)
@@ -20,13 +19,19 @@ export const useTimestamp = () => {
   return timestamp
 }
 
-const TimeText = styled.text.attrs({
-  startOffset: '50%',
-  textAnchor: 'middle'
-})`
-  fill: white;
-  line-height: 1;
+const Time = styled.div`
+  display: grid;
+  margin-bottom: 32px;
+  grid-template-rows: auto;
+  grid-row-gap: 4px;
+  place-content: center;
+  text-align: center;
+`
+
+const TimeText = styled.span`
+  color: white;
   user-select: none;
+  line-height: 1;
 `
 
 const Clock = styled(TimeText)`
@@ -39,22 +44,20 @@ const Calendar = styled(TimeText)`
 `
 
 export default () => {
-  const { width } = useWindowSize()
   const timestamp = useTimestamp()
   const clock = timestampToClock(timestamp)
   const calendar = timestampToCalendar(timestamp)
-  const cx = width / 2
 
   return (
-    <>
-      <Clock x={cx} y={128 + 16}>
+    <Time>
+      <Clock>
         {clock}
       </Clock>
 
-      <Calendar x={cx} y={128 + 48}>
+      <Calendar>
         {calendar}
       </Calendar>
-    </>
+    </Time>
   )
 }
 

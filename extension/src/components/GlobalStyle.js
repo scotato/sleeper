@@ -14,21 +14,11 @@ const GlobalStyle = createGlobalStyle`
   ${rebootCss}
 
   body {
-    will-change: background;
-    transition: background 0.2s ease-out;
     background-color: ${props => props.theme.color.white};
 
     &.dark-mode {
       background-color: ${props => props.theme.color.black};
     }
-  }
-  
-  #root {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
   }
 `
 
