@@ -1,50 +1,25 @@
 {
+  "private": true,
   "name": "sleeper",
   "version": "1.0.3",
-  "private": true,
-  "dependencies": {
-    "@reach/window-size": "0.9.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "blobs": "1.1.0",
-    "moment": "2.24.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0",
-    "react-spring": "8.0.27",
-    "styled-components": "4.4.1",
-    "styled-reboot": "4.0.3",
-    "use-dark-mode": "2.3.1"
-  },
+  "license": "MIT",
+  "workspaces": [
+    "extension",
+    "web"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "clean": "rm *.zip && rm -rf build",
-    "zipBuild": "cd build && bestzip ../$npm_package_name-v$npm_package_version.zip *",
-    "zipSource": "bestzip $npm_package_name-v$npm_package_version-source.zip public src *.md .env *.json *.lock",
-    "zip": "npm run zipBuild && npm run zipSource",
-    "bump": "json -I -f public/manifest.json -e \"this.version='$npm_package_version'\"",
-    "bundle": "npm run build && npm run zip",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "version": "npm run bump && npm run bundle && git add -A",
-    "postversion": "git push && git push --tags && rm -rf build"
+    "ext": "yarn workspace extension start",
+    "ext:build": "yarn workspace extension build",
+    "web": "yarn workspace web start",
+    "web:build": "yarn workspace web build",
+    "start": "concurrently \"npm:ext\" \"npm:web\"",
+    "build": "concurrently \"npm:ext:build\" \"npm:web:build\""
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "engines": {
+    "node": ">=12",
+    "yarn": ">=1.15"
   },
   "devDependencies": {
-    "bestzip": "2.1.5",
-    "json": "9.0.6"
+    "concurrently": "5.1.0"
   }
 }
