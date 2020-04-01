@@ -22,15 +22,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "clean": "rm *.zip && rm -rf build",
-    "zipBuild": "cd build && bestzip ../$npm_package_name-v$npm_package_version.zip *",
-    "zipSource": "bestzip $npm_package_name-v$npm_package_version-source.zip public src *.md .env *.json *.lock",
+    "zipBuild": "cd build && bestzip ../sleeper-v$npm_package_version.zip *",
+    "zipSource": "bestzip sleeper-v$npm_package_version-source.zip public src *.md .env *.json *.lock",
     "zip": "npm run zipBuild && npm run zipSource",
     "bump": "json -I -f public/manifest.json -e \"this.version='$npm_package_version'\"",
     "bundle": "npm run build && npm run zip",
+    "release": "npm run bump && npm run bundle",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "version": "npm run bump && npm run bundle && git add -A",
-    "postversion": "git push && git push --tags && rm -rf build"
+    "eject": "react-scripts eject"
   },
   "files": [
     "src"

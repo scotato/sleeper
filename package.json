@@ -10,16 +10,21 @@
   "scripts": {
     "ext": "yarn workspace extension start",
     "ext:build": "yarn workspace extension build",
+    "ext:bump": "json -I -f extension/package.json -e \"this.version='$npm_package_version'\"",
+    "ext:release": "yarn workspace extension release",
     "web": "yarn workspace web start",
     "web:build": "yarn workspace web build",
     "start": "concurrently \"npm:ext\" \"npm:web\"",
-    "build": "concurrently \"npm:ext:build\" \"npm:web:build\""
+    "build": "concurrently \"npm:ext:build\" \"npm:web:build\"",
+    "version": "npm run ext:bump && git add -A",
+    "postversion": "git push && git push --tags && rm -rf extension/build"
   },
   "engines": {
     "node": ">=12",
     "yarn": ">=1.15"
   },
   "devDependencies": {
-    "concurrently": "5.1.0"
+    "concurrently": "5.1.0",
+    "json": "9.0.6"
   }
 }
