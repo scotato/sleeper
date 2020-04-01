@@ -1,5 +1,5 @@
 <h1>
-  <a href="https://sleeper.fyi"><img alt="sleeper" src="https://sleeper.fyi/logo.svg" width="48" /></a>
+  <a href="https://sleeper.fyi"><img alt="sleeper" src="https://sleeper.fyi/logo.svg" width="40" style="margin-bottom:-8px;" /></a>
   Sleeper Website
 </h1>
 
