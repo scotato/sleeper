@@ -43,7 +43,7 @@ const Notification = styled(OutboundLink)`
   }
 `
 
-const NotificationLogo = styled(Logo)`
+const NotificationLogo = styled.div`
   grid-area: logo;
 `
 
@@ -85,7 +85,9 @@ export default () => notifications.map(notification => (
     onClick={e => e.stopPropagation()}
     target="_blank"
   >
-    <NotificationLogo brand={notification.id} />
+    <NotificationLogo>
+      <Logo brand={notification.id} />
+    </NotificationLogo>
     <NotificationTitle>{notification.name}</NotificationTitle>
     <NotificationDescription>{notification.message}</NotificationDescription>
   </Notification>
