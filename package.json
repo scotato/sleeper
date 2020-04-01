@@ -16,7 +16,7 @@
     "web:build": "yarn workspace web build",
     "start": "concurrently \"npm:ext\" \"npm:web\"",
     "build": "concurrently \"npm:ext:build\" \"npm:web:build\"",
-    "version": "npm run ext:bump && git add -A",
+    "version": "npm run ext:bump && npm run ext:release && git add -A",
     "postversion": "git push && git push --tags && rm -rf extension/build"
   },
   "engines": {
