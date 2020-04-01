@@ -14,9 +14,10 @@
     "ext:release": "npm run ext:bump && yarn workspace extension release",
     "web": "yarn workspace web start",
     "web:build": "yarn workspace web build",
+    "web:bump": "json -I -f web/package.json -e \"this.dependencies.extension='$npm_package_version'\"",
     "start": "concurrently \"npm:ext\" \"npm:web\"",
     "build": "concurrently \"npm:ext:build\" \"npm:web:build\"",
-    "version": "npm run ext:release && git add -A",
+    "version": "npm run web:bump && npm run ext:release && git add -A",
     "postversion": "git push && git push --tags && rm -rf extension/build"
   },
   "engines": {
