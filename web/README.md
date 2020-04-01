@@ -2,8 +2,6 @@
   <a href="https://sleeper.fyi"><img alt="sleeper" src="https://sleeper.fyi/logo.svg" width="128" /></a>
 </p>
 
-<br />
-
 # Sleeper Website
 
 Marketing website for the [sleeper](https://sleeper.fyi) browser extension.

@@ -2,8 +2,6 @@
   <a href="https://sleeper.fyi"><img alt="sleeper" src="https://sleeper.fyi/logo.svg" width="128" /></a>
 </p>
 
-<br />
-
 # Sleeper
 
 An ambient new tab browser extension
