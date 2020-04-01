@@ -69,7 +69,7 @@ const notifications = [{
     id: 'chrome',
     name: 'Chrome',
     to: process.env.REACT_APP_CHROME_STORE,
-    message: 'Install Sleeper for Chromium'
+    message: 'Install Sleeper for Chrome'
   }, {
     id: 'firefox',
     name: 'Firefox',
