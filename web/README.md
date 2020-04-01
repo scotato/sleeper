@@ -1,7 +1,10 @@
-<h1>
-  <a href="https://sleeper.fyi"><img alt="sleeper" src="https://sleeper.fyi/logo.svg" width="40" style="margin-bottom:-8px;" /></a>
-  Sleeper Website
-</h1>
+<div style="text-align: center;">
+  <a href="https://sleeper.fyi"><img alt="sleeper" src="https://sleeper.fyi/logo.svg" width="128" /></a>
+</div>
+
+<br />
+
+# Sleeper Website
 
 Marketing website for the [sleeper](https://sleeper.fyi) browser extension.
 
