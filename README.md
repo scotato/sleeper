@@ -1,6 +1,6 @@
-<div style="text-align: center;">
+<p align="center">
   <a href="https://sleeper.fyi"><img alt="sleeper" src="https://sleeper.fyi/logo.svg" width="128" /></a>
-</div>
+</p>
 
 <br />
 
