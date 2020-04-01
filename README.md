@@ -8,7 +8,7 @@ An ambient new tab browser extension
 
 ## Installation
 
-Sleeper is available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/sleeper/) or [Chrome](https://chrome.google.com/webstore/detail/sleeper/njihjodgjnlpkoipodopnchepnpoogdi), see it in action at [sleeper.fyi](sleeper.fyi).
+Sleeper is available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/sleeper/) or [Chrome](https://chrome.google.com/webstore/detail/sleeper/njihjodgjnlpkoipodopnchepnpoogdi), see it in action at [sleeper.fyi](https://sleeper.fyi).
 
 ## Architecture
 
