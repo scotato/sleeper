@@ -62,32 +62,24 @@ const NotificationDescription = styled.span`
   line-height: 1;
 `
 
+const spring = {
+  type: 'spring',
+  damping: 15,
+  stiffness: 500,
+  restSpeed: 0.001,
+  restDelta: 0.001
+}
+
 const variants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: {
-      y: {
-        type: 'spring',
-        damping: 17.5,
-        stiffness: 500,
-        restSpeed: 0.001,
-        restDelta: 0.001
-      }
-    }
+    transition: { y: spring }
   },
   hidden: {
     y: 8,
     opacity: 0,
-    transition: {
-      y: {
-        type: 'spring',
-        damping: 17.5,
-        stiffness: 500,
-        restSpeed: 0.001,
-        restDelta: 0.001
-      }
-    }
+    transition: { y: spring }
   }
 }
 
@@ -96,6 +88,7 @@ export default props => (
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.99 }}
     variants={variants}
+    transition={spring}
   >
     <Notification
       key={props.id}
