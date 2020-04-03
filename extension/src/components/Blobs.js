@@ -43,7 +43,7 @@ export default () => {
         complexity={0.66}
         contrast={0.4}
         cx={width * 0.8}
-        cy={isLandscape ? height * 0 :  height * -0.15}
+        cy={height * 0}
       />
 
       <Blob
@@ -52,7 +52,7 @@ export default () => {
         complexity={0.75}
         contrast={0.4}
         cx={width * 0.6}
-        cy={isLandscape ? height * -0.5 : height * -0.25}
+        cy={isLandscape ? height * -0.5 : height * -0.2}
       />
 
       <Blob
@@ -61,7 +61,7 @@ export default () => {
         complexity={0.75}
         contrast={0.3}
         cx={width * 0.9}
-        cy={isLandscape ? height * -0.25 : height * -0.125}
+        cy={isLandscape ? height * -0.25 : height * -0.1}
       />
 
       <Blob

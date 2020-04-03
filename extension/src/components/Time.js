@@ -40,6 +40,11 @@ const TimeText = styled.span`
 const Clock = styled(TimeText)`
   font-size: 96px;
   font-weight: 200;
+
+  @media (max-width: 720px) {
+    font-size: 64px;
+    font-weight: 300;
+  }
 `
 
 const Calendar = styled(TimeText)`
