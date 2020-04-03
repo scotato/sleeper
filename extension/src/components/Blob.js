@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { motion } from "framer-motion"
 import { useWindowSize } from "@reach/window-size"
 import blobs from 'blobs'
-import moment from 'moment'
+
+import { Context } from './Context'
 
 // blobs returns an entire SVG structure, we just want the d from the path
 const randBlob = ({ size, complexity, contrast }) => blobs.editable({
@@ -15,8 +16,8 @@ const randBlob = ({ size, complexity, contrast }) => blobs.editable({
 
 export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   const blobProps = { size, complexity, contrast }
+  const { state } = useContext(Context)
   const { width, height } = useWindowSize()
-  const [ time, setTime ] = useState(moment().format())
   const [ newBlob, setNewBlob ] = useState(randBlob(blobProps))
   const [ isAnimating, setIsAnimating ] = useState(false)
   const length = width > height ? width : height
@@ -25,25 +26,11 @@ export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   const transform = `translate(${cx - (size / 2)},${cy - (size / 2)})`
   const fill = `url(#${gradient})`
 
-  // reanimate on minute change unless already animating
+  // animate on load and when minute or screen changes if not currently animating
   useEffect(() => {
-    const timer = setInterval(() => {
-      const previousMinute = moment(time).minute()
-      const currentMinute = moment().minute()
-      const isNewMinute = previousMinute !== currentMinute
-      const shouldReanimate = isNewMinute && !isAnimating
-
-      if (shouldReanimate) {
-        setNewBlobRand()
-      }
-      setTime(moment().format())
-    }, 1000)
-    return () => clearInterval(timer)
-  })
-
-  // reanimate on load
-  // eslint-disable-next-line
-  useEffect(setNewBlobRand, [])
+    if (!isAnimating) setNewBlobRand()
+    // eslint-disable-next-line
+  }, [state.time, width, height])
 
   return (
     <g transform={transform}>
@@ -52,7 +39,7 @@ export default ({ size, complexity, contrast, gradient, cx, cy }) => {
         initial={{ d: randBlob(blobProps) }}
         animate={{ d: newBlob }}
         transition={{
-          type: "spring",
+          type: 'spring',
           damping: 10,
           stiffness: 10,
           mass: size / length * 10,

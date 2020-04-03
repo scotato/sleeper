@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
+
+import { Context } from './Context'
 
 export const dateToSeconds = date =>
   date.seconds() + (date.minutes() * 60) + (date.hours() * 60 * 60)
@@ -10,6 +12,7 @@ export const timestampToCalendar = timestamp => moment(timestamp).format('dddd, 
 
 export const useTimestamp = () => {
   const [timestamp, setTimestamp] = useState(moment().valueOf())
+
 
   useEffect(() => {
     const timer = setInterval(() => setTimestamp(moment().valueOf()), 1000)
@@ -47,6 +50,14 @@ export default () => {
   const timestamp = useTimestamp()
   const clock = timestampToClock(timestamp)
   const calendar = timestampToCalendar(timestamp)
+  const { state, dispatch } = useContext(Context)
+
+  useEffect(() => {
+    const minuteStore = moment(state.time).minute()
+    const minuteTimestamp = moment(timestamp).minute()
+    const isNewMinute = minuteTimestamp !== minuteStore
+    if (isNewMinute) dispatch({type: 'setTime'})
+  }, [state.time, dispatch, timestamp])
 
   return (
     <Time>
@@ -60,22 +71,3 @@ export default () => {
     </Time>
   )
 }
-
-// export const SECONDSPERMINUTE = 60
-// export const MINUTESPERHOUR = 60
-// export const HOURSPERDAY = 24
-// export const DAYSPERMONTH = moment().daysInMonth()
-// export const MONTHSPERYEAR = 12
-
-// export const SECONDSPERHOUR = SECONDSPERMINUTE * MINUTESPERHOUR
-// export const SECONDSPERDAY = SECONDSPERHOUR * HOURSPERDAY
-// export const SECONDSPERMONTH = SECONDSPERDAY * DAYSPERMONTH
-// export const SECONDSPERYEAR = SECONDSPERMONTH * MONTHSPERYEAR
-
-// export const MINUTESPERDAY = MINUTESPERHOUR * HOURSPERDAY
-// export const MINUTESPERMONTH = MINUTESPERDAY * DAYSPERMONTH
-// export const MINUTESPERYEAR = MINUTESPERMONTH * MONTHSPERYEAR
-
-// export const HOURSPERMONTH = HOURSPERDAY * DAYSPERMONTH
-// export const HOURSPERYEAR = HOURSPERMONTH * MONTHSPERYEAR
-// export const DAYSPERYEAR = DAYSPERMONTH * MONTHSPERYEAR

@@ -24,6 +24,7 @@ export default () => {
   const { width, height } = useWindowSize()
   const { value: isDarkMode } = useDarkMode()
   const length = width > height ? width : height
+  const isLandscape = width > height
 
   const size = {
     xl: length * 2,
@@ -42,7 +43,7 @@ export default () => {
         complexity={0.66}
         contrast={0.4}
         cx={width * 0.8}
-        cy={height * 0}
+        cy={isLandscape ? height * 0 :  height * -0.15}
       />
 
       <Blob
@@ -51,7 +52,7 @@ export default () => {
         complexity={0.75}
         contrast={0.4}
         cx={width * 0.6}
-        cy={height * -0.5}
+        cy={isLandscape ? height * -0.5 : height * -0.25}
       />
 
       <Blob
@@ -60,7 +61,7 @@ export default () => {
         complexity={0.75}
         contrast={0.3}
         cx={width * 0.9}
-        cy={height * -0.25}
+        cy={isLandscape ? height * -0.25 : height * -0.125}
       />
 
       <Blob
@@ -68,7 +69,7 @@ export default () => {
         size={size.sm}
         complexity={0.75}
         contrast={0.3}
-        cx={width * -0.15}
+        cx={isLandscape ? width * -0.15 : width * -0.25}
         cy={height * 0.55}
       />
 
@@ -77,7 +78,7 @@ export default () => {
         size={size.sm}
         complexity={0.5}
         contrast={0.3}
-        cx={width * -0.175}
+        cx={isLandscape ? width * -0.175 : width * -0.25}
         cy={height * 0.55}
       />
 
@@ -87,7 +88,7 @@ export default () => {
         complexity={0.5}
         contrast={0.3}
         cx={width * 0.45}
-        cy={height * 1.25}
+        cy={isLandscape? height * 1.25 : height * 1.1}
       />
 
       <Blob
@@ -96,7 +97,7 @@ export default () => {
         complexity={0.75}
         contrast={0.3}
         cx={width * 0.55}
-        cy={height * 1.25}
+        cy={isLandscape? height * 1.25 : height * 1.1}
       />
     </SVG>
   )
