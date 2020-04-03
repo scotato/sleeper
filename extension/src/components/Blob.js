@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { motion } from "framer-motion"
-import { useWindowSize } from "@reach/window-size"
 import blobs from 'blobs'
+import useDarkMode from 'use-dark-mode'
 
 import { Context } from './Context'
 
 // blobs returns an entire SVG structure, we just want the d from the path
-const randBlob = ({ size, complexity, contrast }) => blobs.editable({
+const blob = ({ size, complexity, contrast }) => blobs.editable({
   size,
   complexity,
   contrast,
@@ -17,33 +17,33 @@ const randBlob = ({ size, complexity, contrast }) => blobs.editable({
 export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   const blobProps = { size, complexity, contrast }
   const { state } = useContext(Context)
-  const { width, height } = useWindowSize()
-  const [ newBlob, setNewBlob ] = useState(randBlob(blobProps))
+  const { value: isDarkMode } = useDarkMode()
+  const [ newBlob, setNewBlob ] = useState(blob(blobProps))
   const [ isAnimating, setIsAnimating ] = useState(false)
-  const length = width > height ? width : height
-  const setNewBlobRand = () => setNewBlob(randBlob(blobProps))
-  const onClick = e => { e.stopPropagation(); setNewBlobRand() }
-
+  const refreshBlobs = () => setNewBlob(blob(blobProps))
+  const onClick = e => { e.stopPropagation(); refreshBlobs() }
   const transform = `translate(${cx - (size / 2)},${cy - (size / 2)})`
   const fill = `url(#${gradient})`
 
-  // animate on load and when minute or screen changes if not currently animating
-  useEffect(() => {
-    if (!isAnimating) setNewBlobRand()
-    // eslint-disable-next-line
-  }, [state.time, width, height])
+  // animate on minute and dark mode change if not currently animating
+  // eslint-disable-next-line
+  useEffect(() => { if (!isAnimating) refreshBlobs() }, [state.time, isDarkMode])
+
+  // animate on load and size change
+  // eslint-disable-next-line
+  useEffect(refreshBlobs, [size])
 
   return (
     <g transform={transform}>
       <motion.path
         fill={fill}
-        initial={{ d: randBlob(blobProps) }}
+        initial={{ d: blob(blobProps) }}
         animate={{ d: newBlob }}
         transition={{
           type: 'spring',
           damping: 10,
           stiffness: 10,
-          mass: size / length * 10,
+          mass: size / 200,
         }}
         onAnimationStart={() => setIsAnimating(true)}
         onAnimationComplete={() => setIsAnimating(false)}
