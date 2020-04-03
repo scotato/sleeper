@@ -14,15 +14,14 @@ const SVG = props => {
       height={height}
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
-    >
-      {props.children}
-    </svg>
+      {...props}
+    />
   )
 }
 
 export default () => {
   const { width, height } = useWindowSize()
-  const { value: isDarkMode } = useDarkMode()
+  const { value: isDarkMode, toggle: toggleDarkMode } = useDarkMode()
   const length = width > height ? width : height
   const isLandscape = width > height
 
@@ -35,7 +34,7 @@ export default () => {
   }
 
   return (
-    <SVG>
+    <SVG onClick={toggleDarkMode}>
       <Gradients />
       <Blob
         gradient={isDarkMode ? 'pinkRadial' : 'pinkRadial'}

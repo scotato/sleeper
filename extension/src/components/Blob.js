@@ -22,6 +22,7 @@ export default ({ size, complexity, contrast, gradient, cx, cy }) => {
   const [ isAnimating, setIsAnimating ] = useState(false)
   const length = width > height ? width : height
   const setNewBlobRand = () => setNewBlob(randBlob(blobProps))
+  const onClick = e => { e.stopPropagation(); setNewBlobRand() }
 
   const transform = `translate(${cx - (size / 2)},${cy - (size / 2)})`
   const fill = `url(#${gradient})`
@@ -46,7 +47,7 @@ export default ({ size, complexity, contrast, gradient, cx, cy }) => {
         }}
         onAnimationStart={() => setIsAnimating(true)}
         onAnimationComplete={() => setIsAnimating(false)}
-        onClick={setNewBlobRand}
+        onClick={onClick}
       />
     </g>
   )
