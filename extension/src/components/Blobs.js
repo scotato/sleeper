@@ -39,7 +39,7 @@ export default () => {
       <Blob
         gradient={isDarkMode ? 'pinkRadial' : 'pinkRadial'}
         size={size.lg}
-        complexity={0.75}
+        complexity={0.66}
         contrast={0.4}
         cx={width * 0.8}
         cy={height * 0}

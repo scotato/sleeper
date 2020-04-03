@@ -26,11 +26,11 @@ const Time = styled.div`
   grid-row-gap: 4px;
   place-content: center;
   text-align: center;
+  user-select: none;
 `
 
 const TimeText = styled.span`
   color: white;
-  user-select: none;
   line-height: 1;
 `
 

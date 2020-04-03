@@ -9,11 +9,11 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "blobs": "1.1.0",
+    "framer-motion": "1.10.3",
     "moment": "2.24.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "react-spring": "8.0.27",
     "styled-components": "4.4.1",
     "styled-reboot": "4.0.3",
     "use-dark-mode": "2.3.1"

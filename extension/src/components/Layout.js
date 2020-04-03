@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import useDarkMode from 'use-dark-mode'
 
 import Blobs from './Blobs'
 import GlobalStyle from './GlobalStyle'
@@ -25,26 +24,23 @@ const Body = styled.main`
   flex-direction: column;
   max-width: 720px;
   z-index: 10;
+  pointer-events: none;
 
   @media (max-width: 720px) {
     padding: 32px 16px;
   }
 `
 
-export default props => {
-  const { toggle } = useDarkMode()
-
-  return (
-    <>
-      <GlobalStyle />
-      <Layout onClick={toggle}>
-        <Body>
-          {props.children}
-        </Body>
-        <BlobsContainer>
-          <Blobs />
-        </BlobsContainer>
-      </Layout>
-    </>
-  )
-}
+export default props => (
+  <>
+    <GlobalStyle />
+    <Layout>
+      <Body>
+        {props.children}
+      </Body>
+      <BlobsContainer>
+        <Blobs />
+      </BlobsContainer>
+    </Layout>
+  </>
+)
