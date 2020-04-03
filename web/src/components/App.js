@@ -5,6 +5,7 @@ import ReactGA from 'react-ga'
 import Layout from 'extension/src/components/Layout'
 import Time from 'extension/src/components/Time'
 import theme from 'extension/src/theme'
+import { ContextProvider } from "extension/src/components/Context"
 
 import Notifications from './Notifications'
 
@@ -13,9 +14,11 @@ ReactGA.pageview(window.location.pathname + window.location.search)
 
 export default () => (
   <ThemeProvider theme={theme}>
-    <Layout>
-      <Time />
-      <Notifications />
-    </Layout>
+    <ContextProvider>
+      <Layout>
+        <Time />
+        <Notifications />
+      </Layout>
+    </ContextProvider>
   </ThemeProvider>
 )
