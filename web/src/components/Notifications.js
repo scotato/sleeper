@@ -15,6 +15,7 @@ const variants = {
 export default () => {
   const [isVisible, toggleVisible] = useCycle(false, true)
 
+  // eslint-disable-next-line
   useEffect(() => toggleVisible(), [])
 
   return (
