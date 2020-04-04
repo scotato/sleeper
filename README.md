@@ -8,13 +8,13 @@ An ambient new tab browser extension
 
 ## Installation
 
-Sleeper is available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/sleeper/) or [Chrome](https://chrome.google.com/webstore/detail/sleeper/njihjodgjnlpkoipodopnchepnpoogdi), see it in action at [sleeper.fyi](https://sleeper.fyi).
+Sleeper is available for [Chrome](https://chrome.google.com/webstore/detail/sleeper/njihjodgjnlpkoipodopnchepnpoogdi), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/sleeper/) and [Edge](https://microsoftedge.microsoft.com/addons/detail/gdihfmeehghdcheocnakekjegoaiphlo). See it in action at [sleeper.fyi](https://sleeper.fyi).
 
 ## Architecture
 
 This is a monorepo using [yarn workspaces](https://yarnpkg.com/features/workspaces) that contains the sleeper [extension](https://github.com/scotato/sleeper/tree/master/extension) and [website](https://github.com/scotato/sleeper/tree/master/web).
 
-The extension and site are built with [React](https://reactjs.org/) using [create-react-app](https://github.com/facebook/create-react-app), [blobs](https://github.com/g-harel/blobs), [react-spring](react-spring.io/), and [styled-components](https://styled-components.com/). Design based on [iOS 13](https://www.apple.com/ios/ios-13/) dark mode wallpapers.
+The extension and site are built with [React](https://reactjs.org/) using [create-react-app](https://github.com/facebook/create-react-app), [blobs](https://github.com/g-harel/blobs), [framer-motion](https://www.framer.com/motion/), and [styled-components](https://styled-components.com/). Design based on [iOS 13](https://www.apple.com/ios/ios-13/) dark mode wallpapers.
 
 The extension contains scripts to bundle and zip the project for release. The website is hosted by [Netlify](http://netlify.com/) which watches the master branch of this repo and automatically deploys the site on change.
 
@@ -46,7 +46,7 @@ You will also see any lint errors in the console.
 
 Builds the extension and website for production to their respective `build` folders.
 
-Projects can be build individually with `yarn ext:build` or `yarn web:build`.
+Projects can be built individually with `yarn ext:build` or `yarn web:build`.
 
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
