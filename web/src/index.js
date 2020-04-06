@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
+import iconsInit from 'extension/src/icons'
+
+iconsInit()
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
