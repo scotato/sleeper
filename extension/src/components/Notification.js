@@ -1,47 +1,60 @@
 import React from 'react'
 import styled from 'styled-components'
-import { OutboundLink } from 'react-ga'
 import { motion } from "framer-motion"
 
+import Link from './Link'
 import Logo from './Logo'
+import Icon from './Icon'
 
-const Notification = styled(OutboundLink)`
+const Notification = styled(Link)`
   display: grid;
-  margin: 16px 0;
+  margin: 16px auto;
   padding: 12px;
-  background-color: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(64px);
-  border-radius: 16px;
-  grid-template-columns: 24px 1fr;
+  max-width: 512px;
+  grid-template-columns: 24px 1fr 48px;
   grid-template-rows: 24px auto;
   grid-column-gap: 8px;
   grid-row-gap: 12px;
   grid-template-areas:
-    "logo title"
-    "description description";
+    "logo title icon"
+    "description description icon";
   color: ${props => props.theme.color.black};
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(64px);
+  border-radius: 16px;
   pointer-events: all;
-
-  @-moz-document url-prefix() {
-    background-color: rgba(255, 255, 255, 0.9);
-  }
+  will-change: background-color;
+  transition: background-color 0.2s ease-in-out;
 
   .dark-mode & {
     color: ${props => props.theme.color.white};
     background-color: rgba(0, 0, 0, 0.5);
 
-    @-moz-document url-prefix() {
-      background-color: rgba(0, 0, 0, 0.9);
-    }
-
     &:hover {
       color: ${props => props.theme.color.white};
     }
+
+    @-moz-document url-prefix() {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+  }
+
+  @-moz-document url-prefix() {
+    background-color: rgba(255, 255, 255, 0.9);
   }
 
   &:hover {
     text-decoration: none;
     color: ${props => props.theme.color.black};
+  }
+
+  &:focus {
+    outline: none;
+    background-color: hsla(0, 0%, 100%, 75%);
+
+    .dark-mode & {
+      background-color: hsla(0, 0%, 0%, 75%);
+    }
   }
 `
 
@@ -60,6 +73,16 @@ const NotificationDescription = styled.span`
   padding: 0 4px;
   font-size: 20px;
   line-height: 1;
+`
+
+const NotificationIcon = styled(Icon)`
+  grid-area: icon;
+  font-size: 24px;
+  color: hsla(0, 0%, 0%, 10%);
+
+  .dark-mode & {
+    color: hsla(0, 0%, 100%, 10%);
+  }
 `
 
 const spring = {
@@ -90,18 +113,13 @@ export default props => (
     variants={variants}
     transition={spring}
   >
-    <Notification
-      key={props.id}
-      eventLabel="outbound"
-      to={props.to}
-      onClick={e => e.stopPropagation()}
-      target="_blank"
-    >
+    <Notification to={props.to} onClick={e => e.stopPropagation()}>
       <NotificationLogo>
         <Logo brand={props.id} />
       </NotificationLogo>
       <NotificationTitle>{props.title}</NotificationTitle>
       <NotificationDescription>{props.description}</NotificationDescription>
+      <NotificationIcon name={props.icon} fixedWidth />
     </Notification>
   </motion.div>
 )
