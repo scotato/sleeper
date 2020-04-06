@@ -3,11 +3,12 @@ import styled from 'styled-components'
 
 import Blobs from './Blobs'
 import GlobalStyle from './GlobalStyle'
+// import Settings, { SettingsButton } from './Settings'
 
 const Layout = styled.div`
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
 `
 
 const BlobsContainer = styled.div`
@@ -20,27 +21,43 @@ const Body = styled.main`
   display: flex;
   position: relative;
   margin: 0 auto;
-  padding: 64px;
   flex-direction: column;
-  max-width: 720px;
+  height: 100%;
   z-index: 10;
   pointer-events: none;
 
-  @media (max-width: 720px) {
-    padding: 32px 16px;
+  [tabindex] {
+    min-height: 100%;
   }
 `
 
-export default props => (
-  <>
-    <GlobalStyle />
-    <Layout>
-      <Body>
-        {props.children}
-      </Body>
-      <BlobsContainer>
-        <Blobs />
-      </BlobsContainer>
-    </Layout>
-  </>
-)
+export const Container = styled.div`
+  margin: 0 auto;
+  padding: 32px 48px;
+  max-width: 848px;
+
+  @media (max-width: 720px) {
+    padding: 24px;
+  }
+`
+
+export default props => {
+  // const [isSettingsOpen, setSettingsOpen] = useState(true)
+  // const toggleIsOpen = () => setSettingsOpen(!isSettingsOpen)
+
+  return (
+    <>
+      <GlobalStyle />
+      <Layout>
+        <Body>
+          {props.children}
+          {/* <SettingsButton onClick={toggleIsOpen} /> */}
+        </Body>
+        <BlobsContainer>
+          <Blobs />
+        </BlobsContainer>
+      </Layout>
+      {/* <Settings /> */}
+    </>
+  )
+}

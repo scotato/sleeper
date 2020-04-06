@@ -1,6 +1,9 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { motion } from "framer-motion"
+
+import Logo from './Logo'
 
 const IconStyled = styled.div`
   display: grid;
@@ -27,10 +30,37 @@ const iconSwitch = icon => {
   }
 }
 
-const Icon = ({ size, name, fixedWidth, ...props }) => (
+const Icon = ({ size, name, fixedWidth, spin, ...props }) => (
   <IconStyled size={size} {...props}>
-    <FontAwesomeIcon icon={iconSwitch(name)} fixedWidth={fixedWidth} />
+    <FontAwesomeIcon icon={iconSwitch(name)} fixedWidth={fixedWidth} spin={spin} />
   </IconStyled>
+)
+
+const LoadingContainer = styled(motion.div)`
+  place-self: center;
+`
+
+const LoadingIcon = styled(Logo).attrs({brand: 'loading'})`
+  width: 128px;
+  height: 128px;
+`
+
+export const Loading = props => (
+  <LoadingContainer
+    animate={{ opacity: 1 }}
+    initial={{ opacity: 0 }}
+    transition={{
+      type: 'spring',
+      delay: 0.5
+    }}
+  >
+    <motion.div
+      animate={{ rotate: [0, 360] }}
+      transition={{ type: 'spring', loop: Infinity }}
+    >
+      <LoadingIcon />
+    </motion.div>
+  </LoadingContainer>
 )
 
 export const IconPlaceholder = styled(Icon)`

@@ -14,11 +14,34 @@ const GlobalStyle = createGlobalStyle`
   ${rebootCss}
 
   body {
+    color: hsl(0, 0%, 0%);
     background-color: ${props => props.theme.color.white};
 
     &.dark-mode {
+      color: hsl(0, 0%, 100%);
       background-color: ${props => props.theme.color.black};
     }
+  }
+
+  h1 {
+    margin-bottom: 16px;
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  h2 {
+    font-size: 32px;
+    margin-top: 32px;
+  }
+
+  h3 {
+    margin-top: 24px;
+  }
+
+  p,
+  li {
+    font-weight: 300;
+    line-height: 1.6;
   }
 `
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
+import { motion } from "framer-motion"
 
 import { Context } from './Context'
 
@@ -22,14 +23,19 @@ export const useTimestamp = () => {
   return timestamp
 }
 
-const Time = styled.div`
+const Time = styled(motion.div)`
   display: grid;
+  margin-top: 64px;
   margin-bottom: 32px;
   grid-template-rows: auto;
   grid-row-gap: 4px;
   place-content: center;
   text-align: center;
   user-select: none;
+
+  @media (max-width: 720px) {
+    margin-top: 32px;
+  }
 `
 
 const TimeText = styled.span`
@@ -65,7 +71,11 @@ export default () => {
   }, [state.time, dispatch, timestamp])
 
   return (
-    <Time>
+    <Time
+      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 8 }}
+      transition={{ type: 'spring' }}
+    >
       <Clock>
         {clock}
       </Clock>
