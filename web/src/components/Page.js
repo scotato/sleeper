@@ -39,6 +39,10 @@ const Page = styled.div`
     list-style-type: none;
     font-size: 22px;
 
+    @media (max-width: 720px) {
+      padding-left: 38px;
+    }
+
     li {
       position: relative;
       margin: 4px 0;

@@ -39,6 +39,10 @@ export const Container = styled.div`
   @media (max-width: 720px) {
     padding: 24px;
   }
+
+  @media (max-width: 350px) {
+    padding: 16px;
+  }
 `
 
 export default props => {

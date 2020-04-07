@@ -15,6 +15,10 @@ const Header = styled.header`
   line-height: 1;
   align-items: center;
 
+  @media (max-width: 720px) {
+    font-size: 20px;
+  }
+
   a {
     color: white;
     justify-self: start;
@@ -31,6 +35,10 @@ const Social = styled.div`
   grid-template-columns: 32px 32px;
   grid-column-gap: 8px;
   justify-self: flex-end;
+
+  @media (max-width: 720px) {
+    grid-column-gap: 0;
+  }
 `
 
 const HeaderLogo = styled(Logo)`
