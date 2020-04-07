@@ -33,6 +33,11 @@ const Social = styled.div`
   justify-self: flex-end;
 `
 
+const HeaderLogo = styled(Logo)`
+  width: 64px;
+  height: 32px;
+`
+
 export default () => {
   const timestamp = useTimestamp()
   const clock = timestampToClock(timestamp)
@@ -41,7 +46,7 @@ export default () => {
     <Container>
       <Header>
         <Back>{clock}</Back>
-        <Logo />
+        <HeaderLogo />
         <Social>
           <Link to={process.env.REACT_APP_GITHUB_REPO}>
             <Icon name="github" />
