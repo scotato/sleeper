@@ -58,7 +58,7 @@ const Notification = styled(Link)`
   }
 `
 
-const NotificationLogo = styled.div`
+const NotificationLogo = styled(Logo)`
   grid-area: logo;
 `
 
@@ -114,9 +114,7 @@ export default props => (
     transition={spring}
   >
     <Notification to={props.to} onClick={e => e.stopPropagation()}>
-      <NotificationLogo>
-        <Logo brand={props.id} />
-      </NotificationLogo>
+      <NotificationLogo brand={props.id} />
       <NotificationTitle>{props.title}</NotificationTitle>
       <NotificationDescription>{props.description}</NotificationDescription>
       <NotificationIcon name={props.icon} fixedWidth />
