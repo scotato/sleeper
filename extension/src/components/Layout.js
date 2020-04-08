@@ -23,7 +23,7 @@ const Body = styled.main`
   position: relative;
   margin: 0 auto;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
   z-index: 10;
   pointer-events: none;
 

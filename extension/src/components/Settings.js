@@ -31,16 +31,16 @@ const SettingsBar = styled.div`
 `
 
 const Button = styled(motion.button)`
-  position: fixed;
+  position: absolute;
   margin: 0;
   padding: 16px;
-  bottom: 8px;
-  left: calc(50% - 96px);
+  bottom: 16px;
   cursor: pointer;
   pointer-events: all;
   border: 0;
   border-radius: 36px;
   background-color: transparent;
+  align-self: center;
 
   &:focus {
     outline: none;

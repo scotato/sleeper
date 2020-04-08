@@ -40,10 +40,18 @@ const Notification = styled(Link)`
 
   &:focus {
     outline: none;
-    background-color: hsla(0, 0%, 100%, 75%);
+    background-color: hsla(0, 0%, 100%, 90%);
 
     .dark-mode & {
-      background-color: hsla(0, 0%, 0%, 75%);
+      background-color: hsla(0, 0%, 0%, 90%);
+    }
+
+    @-moz-document url-prefix() {
+      background-color: hsla(0, 0%, 85%, 99%);
+
+      .dark-mode & {
+        background-color: hsla(0, 0%, 15%, 99%);
+      }
     }
   }
 `
