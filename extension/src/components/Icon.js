@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion } from "framer-motion"
 
@@ -9,11 +9,6 @@ const IconStyled = styled.div`
   display: grid;
   place-items: center;
   line-height: 1;
-
-  ${props => props.size && css`
-    font-size: ${props.theme.size[props.size]};
-    width: ${props.theme.size[props.size]};
-  `}
 `
 
 const iconSwitch = icon => {

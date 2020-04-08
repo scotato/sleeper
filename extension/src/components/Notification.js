@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Link from './Link'
 import Logo from './Logo'
 import Icon from './Icon'
+import { blurStyle } from './Blur'
 
 const Notification = styled(Link)`
   display: grid;
@@ -19,28 +20,17 @@ const Notification = styled(Link)`
     "logo title icon"
     "description description icon";
   color: ${props => props.theme.color.black};
-  background-color: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(64px);
   border-radius: 16px;
   pointer-events: all;
-  will-change: background-color;
-  transition: background-color 0.2s ease-in-out;
+
+  ${blurStyle}
 
   .dark-mode & {
     color: ${props => props.theme.color.white};
-    background-color: rgba(0, 0, 0, 0.5);
 
     &:hover {
       color: ${props => props.theme.color.white};
     }
-
-    @-moz-document url-prefix() {
-      background-color: rgba(0, 0, 0, 0.9);
-    }
-  }
-
-  @-moz-document url-prefix() {
-    background-color: rgba(255, 255, 255, 0.9);
   }
 
   &:hover {
@@ -85,7 +75,7 @@ const NotificationIcon = styled(Icon)`
   color: hsla(0, 0%, 0%, 10%);
 
   .dark-mode & {
-    color: hsla(0, 0%, 100%, 10%);
+    color: hsla(0, 0%, 100%, 20%);
   }
 `
 

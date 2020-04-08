@@ -5,13 +5,19 @@ function reducer(state, action) {
         ...state,
         time: new Date().getTime()
       }
+    case 'toggleSettings':
+      return {
+        ...state,
+        isSettingsOpen: !state.isSettingsOpen
+      }
     default:
       throw new Error()
   }
 }
 
 const initialState = {
-  time: new Date().getTime()
+  time: new Date().getTime(),
+  isSettingsOpen: false
 }
 
 export { reducer, initialState }
