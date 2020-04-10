@@ -9,6 +9,9 @@ export const color = {
   pink: 'hsl(350, 100%, 60%)',
   purple: 'hsl(290, 100%, 50%)',
   purpleDark: 'hsl(290, 100%, 20%)',
+  greenHex: '#0AE678',
+  grayHex: '#c7ced1',
+  default: '#c7ced1'
 }
 
 export default { color }

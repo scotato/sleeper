@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { motion } from "framer-motion"
 
 import Link from './Link'
@@ -7,8 +7,33 @@ import Logo from './Logo'
 import Icon from './Icon'
 import { blurStyle } from './Blur'
 
+const indicatorStyle = css`
+  position: absolute;
+  content: " ";
+  width: 12px;
+  height: 12px;
+  background-color: ${props => props.theme.color.blue};
+  border-radius: 6px;
+  left: -24px;
+  align-self: center;
+  transform: scale(0);
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+  @media (max-width: 720px) {
+    display: none;
+  }
+`
+
+const indicatorStyleActive = css`
+  transform: scale(1);
+  opacity: 1;
+`
+
 const Notification = styled(Link)`
   display: grid;
+  position: relative;
   margin: 16px auto;
   padding: 12px;
   max-width: 512px;
@@ -38,20 +63,15 @@ const Notification = styled(Link)`
     color: ${props => props.theme.color.black};
   }
 
+  &:after {
+    ${indicatorStyle}
+  }
+
   &:focus {
     outline: none;
-    background-color: hsla(0, 0%, 100%, 90%);
 
-    .dark-mode & {
-      background-color: hsla(0, 0%, 0%, 90%);
-    }
-
-    @-moz-document url-prefix() {
-      background-color: hsla(0, 0%, 85%, 99%);
-
-      .dark-mode & {
-        background-color: hsla(0, 0%, 15%, 99%);
-      }
+    &:after {
+      ${indicatorStyleActive}
     }
   }
 `

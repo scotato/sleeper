@@ -1,9 +1,13 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import useDarkMode from 'use-dark-mode'
 
 import { Context } from './Context'
 import { blurStyle } from './Blur'
+import Switch from './Switch'
+import Group from './Group'
+import Row from './Row'
 import Icon from './Icon'
 
 const Settings = styled(motion.div)`
@@ -108,6 +112,7 @@ const SettingsDismissButton = styled.button`
 
 export default () => {
   const { state, dispatch } = useContext(Context)
+  const { toggle: toggleDarkMode, value: isDarkMode } = useDarkMode()
   const toggleSettings = () => dispatch({type: 'toggleSettings'})
 
   return (
@@ -120,6 +125,11 @@ export default () => {
       <SettingsDismissButton onClick={toggleSettings}>
         <Icon name="chevron-down" fixedWidth />
       </SettingsDismissButton>
+      <Group>
+        <Row icon="moon" title="Dark Mode" detail={
+          <Switch checked={isDarkMode} onChange={toggleDarkMode} />
+        } />
+      </Group>
     </Settings>
   )
 }
