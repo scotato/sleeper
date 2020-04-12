@@ -24,7 +24,8 @@
     "react-switch": "5.0.1",
     "styled-components": "4.4.1",
     "styled-reboot": "4.0.3",
-    "use-dark-mode": "2.3.1"
+    "use-dark-mode": "2.3.1",
+    "webextension-polyfill": "0.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
