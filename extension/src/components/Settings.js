@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import useDarkMode from 'use-dark-mode'
@@ -137,6 +137,14 @@ export default () => {
           : console.log('no permission')
         )
   }
+
+  // automatic dark mode
+  useEffect(() => {
+    const isDarkModeSystem = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isDarkModeSync = isDarkMode === isDarkModeSystem
+    const shouldToggleDarkMode = isDarkModeAutomatic && !isDarkModeSync
+    if (shouldToggleDarkMode) toggleDarkMode()
+  }, [isDarkMode, isDarkModeAutomatic])
 
   return (
     <Settings
