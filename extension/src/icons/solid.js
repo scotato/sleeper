@@ -5,6 +5,8 @@ export {
   faChevronUp,
   faCircleNotch,
   faExternalLinkAlt,
+  faGlobe,
+  faMagic,
   faMoon,
-  faSplotch,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons"

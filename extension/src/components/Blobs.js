@@ -21,7 +21,7 @@ const SVG = props => {
 
 export default () => {
   const { width, height } = useWindowSize()
-  const { value: isDarkMode, toggle: toggleDarkMode } = useDarkMode()
+  const { value: isDarkMode } = useDarkMode()
   const length = width > height ? width : height
   const isLandscape = width > height
 
@@ -34,7 +34,7 @@ export default () => {
   }
 
   return (
-    <SVG onClick={toggleDarkMode}>
+    <SVG>
       <Gradients />
       <Blob
         gradient={isDarkMode ? 'pinkRadial' : 'pinkRadial'}

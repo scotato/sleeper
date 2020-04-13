@@ -40,7 +40,7 @@ const Body = styled.div`
 const Caption = styled.div`
   padding: 8px 16px;
   font-size: 16px;
-  color: ${props => props.theme.color.default};
+  color: hsl(0, 0%, 50%);
 `
 
 export default props => (

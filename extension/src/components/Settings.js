@@ -116,18 +116,24 @@ export default () => {
   const { state, dispatch } = useContext(Context)
   const { toggle: toggleDarkMode, value: isDarkMode } = useDarkMode()
   const toggleSettings = () => dispatch({type: 'toggleSettings'})
-  const { settings, setTopSitesEnabled, setTopSitesDetailsEnabled } = useSettings()
   const { isSettingsOpen } = state
-  const { isTopSitesEnabled, isTopSitesDetailsEnabled } = settings
+  const {
+    isTopSites,
+    isTopSitesDetails,
+    isDarkModeAutomatic,
+    setTopSites,
+    setTopSitesDetails,
+    toggleDarkModeAutomatic
+  } = useSettings()
 
   // to enable we have to request permission
   const toggleTopSites = () => {
-    isTopSitesEnabled
-      ? setTopSitesEnabled(false)
+    isTopSites
+      ? setTopSites(false)
       : browser.permissions
         .request(permissions)
         .then(granted => granted
-          ? setTopSitesEnabled(true)
+          ? setTopSites(true)
           : console.log('no permission')
         )
   }
@@ -145,22 +151,37 @@ export default () => {
 
       <div>
         <Group>
-          <Row icon="splotch" title="Top Sites" detail={
-            <Switch checked={isTopSitesEnabled} onChange={toggleTopSites} />
-          } />
-          <Row icon="splotch" title="Top Sites Urls" detail={
+          <Row icon="star" title="Top Sites" detail={
             <Switch
-              checked={isTopSitesEnabled && isTopSitesDetailsEnabled}
-              onChange={setTopSitesDetailsEnabled}
-              disabled={!isTopSitesEnabled}
+              checked={isTopSites}
+              onChange={toggleTopSites}
             />
-          } />
+          }/>
+
+          <Row icon="globe" title="Top Sites Urls" detail={
+            <Switch
+              checked={isTopSites && isTopSitesDetails}
+              onChange={setTopSitesDetails}
+              disabled={!isTopSites}
+            />
+          }/>
         </Group>
 
-        <Group>
+        <Group caption="Automatic Dark Mode matches system dark mode settings">
           <Row icon="moon" title="Dark Mode" detail={
-            <Switch checked={isDarkMode} onChange={toggleDarkMode} />
-          } />
+            <Switch
+              checked={isDarkMode}
+              onChange={toggleDarkMode}
+              disabled={isDarkModeAutomatic}
+            />
+          }/>
+
+          <Row icon="magic" title="Automatic Dark Mode" detail={
+            <Switch
+              checked={isDarkModeAutomatic}
+              onChange={toggleDarkModeAutomatic}
+            />
+          }/>
         </Group>
       </div>
     </Settings>

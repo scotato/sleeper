@@ -1,22 +1,20 @@
 import createPersistedState from 'use-persisted-state'
-const useSettingsState = createPersistedState('settings')
+const useTopSites = createPersistedState('isTopSites')
+const useTopSitesDetails = createPersistedState('isTopSitesDetails')
+const useDarkModeAutomatic = createPersistedState('isDarkModeAutomatic')
 
 const useSettings = () => {
-  const [settings, setSettings] = useSettingsState({
-    isTopSitesEnabled: false,
-    isTopSitesDetailsEnabled: false
-  })
+  const [isTopSites, setTopSites] = useTopSites(false)
+  const [isTopSitesDetails, setTopSitesDetails] = useTopSitesDetails(false)
+  const [isDarkModeAutomatic, setDarkModeAutomatic] = useDarkModeAutomatic(true)
 
   return {
-    settings,
-    setTopSitesEnabled: isTopSitesEnabled => setSettings({
-      ...settings,
-      isTopSitesEnabled
-    }),
-    setTopSitesDetailsEnabled: isTopSitesDetailsEnabled => setSettings({
-      ...settings,
-      isTopSitesDetailsEnabled
-    })
+    isTopSites,
+    isTopSitesDetails,
+    isDarkModeAutomatic,
+    setTopSites,
+    setTopSitesDetails,
+    toggleDarkModeAutomatic: () => setDarkModeAutomatic(!isDarkModeAutomatic)
   }
 }
 

@@ -141,7 +141,7 @@ const variants = {
 }
 
 const PlaceholderIcon = styled(Icon).attrs({
-  name: 'splotch'
+  name: 'star'
 })`
   color: ${props => props.theme.color.yellow};
   font-size: 20px;

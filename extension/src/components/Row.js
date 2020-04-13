@@ -2,7 +2,6 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import Link from './Link'
 import Icon from './Icon'
-// import { blurStyle } from './Blur'
 
 export const rowStyle = css`
   display: grid;
@@ -15,8 +14,14 @@ export const rowStyle = css`
   grid-column-gap: 12px;
   line-height: 32px;
   align-items: center;
-  min-width: 512px;
-  background-color: hsla(0, 0%, 0%, 10%);
+  width: 600px;
+  max-width: 100%;
+  background-color: hsla(0, 0%, 100%, 25%);
+  border-bottom: 2px solid hsla(0, 0%, 0%, 10%);
+
+  .dark-mode & {
+    background-color: hsla(0, 0%, 0%, 25%);
+  }
 
   &:last-child {
     margin-bottom: 0;
@@ -48,10 +53,10 @@ export const Badge = styled(Icon)`
   color: hsl(0, 0%, 70%);
   transform: scale(1.25);
   z-index: 1;
-  font-size: 24px;
+  font-size: 22px;
 
   .dark-mode & {
-    color: hsl(0, 0%, 30%);
+    color: hsl(0, 0%, 50%);
   }
 `
 

@@ -41,8 +41,7 @@ const cleanUrl = url => {
 export default () => {
   const { sites, setSites } = useSites()
   const { favicons, addFavicons } = useFavicons()
-  const { settings } = useSettings()
-  const { isTopSitesEnabled, isTopSitesDetailsEnabled } = settings
+  const { isTopSites, isTopSitesDetails } = useSettings()
 
   const hydrateSites = list => list.map(sitesWithHostnames).map(sitesWithIcons)
   const sitesWithHostnames = site => ({...site, hostname: urlToHostname(site.url)})
@@ -57,7 +56,7 @@ export default () => {
   }
 
   useEffect(() => {
-    isTopSitesEnabled && browser.permissions
+    isTopSites && browser.permissions
       .contains(permissions)
       .then(granted => granted
         ? browser.topSites.get().then(topSites => {
@@ -78,11 +77,11 @@ export default () => {
           })
         : console.log('permission not granted')
       )
-  }, [isTopSitesEnabled])
+  }, [isTopSites])
 
   const hydratedSites = hydrateSites(sites)
 
-  return isTopSitesEnabled ? (
+  return isTopSites ? (
     <Notifications
       variants={variants}
       animate={"visible"}
@@ -95,7 +94,7 @@ export default () => {
           to={site.url}
           logo={site.logo && <img src={site.logo} />}
           title={site.title}
-          description={isTopSitesDetailsEnabled ? cleanUrl(site.url) : null}
+          description={isTopSitesDetails ? cleanUrl(site.url) : null}
           icon="external-link-alt"
         />
       ))}
