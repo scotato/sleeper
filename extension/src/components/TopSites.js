@@ -42,7 +42,7 @@ export default () => {
   const { sites, setSites } = useSites()
   const { favicons, addFavicons } = useFavicons()
   const { settings } = useSettings()
-  const { isTopSitesEnabled } = settings
+  const { isTopSitesEnabled, isTopSitesDetailsEnabled } = settings
 
   const hydrateSites = list => list.map(sitesWithHostnames).map(sitesWithIcons)
   const sitesWithHostnames = site => ({...site, hostname: urlToHostname(site.url)})
@@ -95,7 +95,7 @@ export default () => {
           to={site.url}
           logo={site.logo && <img src={site.logo} />}
           title={site.title}
-          // description={cleanUrl(site.url)}
+          description={isTopSitesDetailsEnabled ? cleanUrl(site.url) : null}
           icon="external-link-alt"
         />
       ))}

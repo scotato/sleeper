@@ -3,7 +3,8 @@ const useSettingsState = createPersistedState('settings')
 
 const useSettings = () => {
   const [settings, setSettings] = useSettingsState({
-    isTopSitesEnabled: false
+    isTopSitesEnabled: false,
+    isTopSitesDetailsEnabled: false
   })
 
   return {
@@ -11,6 +12,10 @@ const useSettings = () => {
     setTopSitesEnabled: isTopSitesEnabled => setSettings({
       ...settings,
       isTopSitesEnabled
+    }),
+    setTopSitesDetailsEnabled: isTopSitesDetailsEnabled => setSettings({
+      ...settings,
+      isTopSitesDetailsEnabled
     })
   }
 }

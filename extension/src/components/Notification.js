@@ -106,9 +106,7 @@ const NotificationDescription = styled.span`
   line-height: 1.1;
   overflow: hidden;
   text-align: right;
-  opacity: 0;
-  will-change: opacity;
-  transition: opaicty 0.2s ease-in-out;
+  opacity: 0.66;
 `
 
 const NotificationIcon = styled(Icon)`

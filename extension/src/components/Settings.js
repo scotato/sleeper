@@ -116,9 +116,9 @@ export default () => {
   const { state, dispatch } = useContext(Context)
   const { toggle: toggleDarkMode, value: isDarkMode } = useDarkMode()
   const toggleSettings = () => dispatch({type: 'toggleSettings'})
-  const { settings, setTopSitesEnabled } = useSettings()
+  const { settings, setTopSitesEnabled, setTopSitesDetailsEnabled } = useSettings()
   const { isSettingsOpen } = state
-  const { isTopSitesEnabled } = settings
+  const { isTopSitesEnabled, isTopSitesDetailsEnabled } = settings
 
   // to enable we have to request permission
   const toggleTopSites = () => {
@@ -143,15 +143,26 @@ export default () => {
         <Icon name="chevron-down" fixedWidth />
       </SettingsDismissButton>
 
-      <Group>
-        <Row icon="splotch" title="Top Sites" detail={
-          <Switch checked={isTopSitesEnabled} onChange={toggleTopSites} />
-        } />
+      <div>
+        <Group>
+          <Row icon="splotch" title="Top Sites" detail={
+            <Switch checked={isTopSitesEnabled} onChange={toggleTopSites} />
+          } />
+          <Row icon="splotch" title="Top Sites Urls" detail={
+            <Switch
+              checked={isTopSitesEnabled && isTopSitesDetailsEnabled}
+              onChange={setTopSitesDetailsEnabled}
+              disabled={!isTopSitesEnabled}
+            />
+          } />
+        </Group>
 
-        <Row icon="moon" title="Dark Mode" detail={
-          <Switch checked={isDarkMode} onChange={toggleDarkMode} />
-        } />
-      </Group>
+        <Group>
+          <Row icon="moon" title="Dark Mode" detail={
+            <Switch checked={isDarkMode} onChange={toggleDarkMode} />
+          } />
+        </Group>
+      </div>
     </Settings>
   )
 }
