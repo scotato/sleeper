@@ -25,8 +25,8 @@ export const useTimestamp = () => {
 
 const Time = styled(motion.div)`
   display: grid;
-  margin-top: 64px;
-  margin-bottom: 32px;
+  margin-top: 48px;
+  margin-bottom: 40px;
   grid-template-rows: auto;
   grid-row-gap: 4px;
   place-content: center;

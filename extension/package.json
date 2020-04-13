@@ -25,6 +25,7 @@
     "styled-components": "4.4.1",
     "styled-reboot": "4.0.3",
     "use-dark-mode": "2.3.1",
+    "use-persisted-state": "0.3.0",
     "webextension-polyfill": "0.6.0"
   },
   "scripts": {

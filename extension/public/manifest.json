@@ -6,6 +6,9 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
+  "optional_permissions": [
+    "topSites"
+  ],
   "version": "1.0.6",
   "icons": {
     "16": "logo16.png",

@@ -21,6 +21,7 @@ const Detail = styled.span`
 const Body = styled.div`
   border-radius: 16px;
   overflow: hidden;
+
   & > a,
   & > textarea,
   & > label,
@@ -28,13 +29,10 @@ const Body = styled.div`
     margin-top: 0;
     margin-bottom: 0;
     border-radius: 0;
-    border-bottom: 2px solid hsla(0, 0%, 0%, 20%);
+
     &:last-child {
       border-bottom-left-radius: 16px;
       border-bottom-right-radius: 16px;
-    }
-    .dark-mode & {
-      border-color: hsl(0, 0%, 10%);
     }
   }
 `

@@ -17,7 +17,7 @@ function reducer(state, action) {
 
 const initialState = {
   time: new Date().getTime(),
-  isSettingsOpen: false
+  isSettingsOpen: false,
 }
 
 export { reducer, initialState }

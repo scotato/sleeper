@@ -24,7 +24,7 @@ const LinkExternal = styled(OutboundLink).attrs({
 `
 
 const Link = ({to, ...props}) => to.includes('http') ? (
-  <LinkExternal to={to} target="_blank" rel="noopener noreferrer" {...props} />
+  <LinkExternal to={to} {...props} />
 ) : (
   <LinkInternal to={to} {...props} />
 )

@@ -2,23 +2,21 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import Link from './Link'
 import Icon from './Icon'
+// import { blurStyle } from './Blur'
 
 export const rowStyle = css`
   display: grid;
   position: relative;
   margin-bottom: 16px;
   padding: 16px;
-  background-color: ${props => props.theme.color.default};
   border-radius: 20px;
   grid-template-areas: "badge title detail";
   grid-template-columns: 32px 1fr auto;
   grid-column-gap: 12px;
   line-height: 32px;
   align-items: center;
-
-  .dark-mode & {
-    background-color: hsl(0, 0%, 20%);
-  }
+  min-width: 512px;
+  background-color: hsla(0, 0%, 0%, 10%);
 
   &:last-child {
     margin-bottom: 0;
@@ -50,6 +48,7 @@ export const Badge = styled(Icon)`
   color: hsl(0, 0%, 70%);
   transform: scale(1.25);
   z-index: 1;
+  font-size: 24px;
 
   .dark-mode & {
     color: hsl(0, 0%, 30%);
@@ -62,6 +61,7 @@ export const Title = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  font-size: 20px;
   z-index: 1.1;
 `
 

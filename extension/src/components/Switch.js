@@ -4,6 +4,7 @@ import styled, { ThemeContext } from 'styled-components'
 
 const Switch = styled(ReactSwitch)`
   display: block !important;
+  pointer-events: all;
 `
 
 export default props => {

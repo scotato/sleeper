@@ -2,24 +2,26 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import useDarkMode from 'use-dark-mode'
+import browser from "webextension-polyfill"
 
+import useSettings from '../store/settings'
 import { Context } from './Context'
 import { blurStyle } from './Blur'
 import Switch from './Switch'
 import Group from './Group'
 import Row from './Row'
 import Icon from './Icon'
+import { permissions } from './TopSites'
 
 const Settings = styled(motion.div)`
   display: grid;
   position: fixed;
   width: 100vw;
-  height: 125vh;
+  min-height: 100vh;
   top: 0;
   z-index: 10;
   justify-items: center;
   grid-template-rows: auto 1fr;
-
   ${blurStyle}
 `
 
@@ -114,10 +116,25 @@ export default () => {
   const { state, dispatch } = useContext(Context)
   const { toggle: toggleDarkMode, value: isDarkMode } = useDarkMode()
   const toggleSettings = () => dispatch({type: 'toggleSettings'})
+  const { settings, setTopSitesEnabled } = useSettings()
+  const { isSettingsOpen } = state
+  const { isTopSitesEnabled } = settings
+
+  // to enable we have to request permission
+  const toggleTopSites = () => {
+    isTopSitesEnabled
+      ? setTopSitesEnabled(false)
+      : browser.permissions
+        .request(permissions)
+        .then(granted => granted
+          ? setTopSitesEnabled(true)
+          : console.log('no permission')
+        )
+  }
 
   return (
     <Settings
-      animate={state.isSettingsOpen ? "open" : "closed"}
+      animate={isSettingsOpen ? "open" : "closed"}
       variants={variants}
       transition={spring}
       initial={false}
@@ -125,7 +142,12 @@ export default () => {
       <SettingsDismissButton onClick={toggleSettings}>
         <Icon name="chevron-down" fixedWidth />
       </SettingsDismissButton>
+
       <Group>
+        <Row icon="splotch" title="Top Sites" detail={
+          <Switch checked={isTopSitesEnabled} onChange={toggleTopSites} />
+        } />
+
         <Row icon="moon" title="Dark Mode" detail={
           <Switch checked={isDarkMode} onChange={toggleDarkMode} />
         } />

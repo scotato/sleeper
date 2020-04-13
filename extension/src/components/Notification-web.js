@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { motion } from "framer-motion"
 
 import Link from './Link'
+import Logo from './Logo'
 import Icon from './Icon'
 import { blurStyle } from './Blur'
 
@@ -33,14 +34,16 @@ const indicatorStyleActive = css`
 const Notification = styled(Link)`
   display: grid;
   position: relative;
-  margin: 8px auto;
+  margin: 16px auto;
   padding: 12px;
-  max-width: 600px;
-  grid-template-columns: 24px auto auto 24px;
+  max-width: 512px;
+  grid-template-columns: 24px 1fr 48px;
   grid-template-rows: 24px auto;
   grid-column-gap: 8px;
-  grid-template-areas: "logo title description icon";
-  align-items: center;
+  grid-row-gap: 12px;
+  grid-template-areas:
+    "logo title icon"
+    "description description icon";
   color: ${props => props.theme.color.black};
   border-radius: 16px;
   pointer-events: all;
@@ -75,12 +78,6 @@ const Notification = styled(Link)`
 
 const NotificationLogo = styled.div`
   grid-area: logo;
-  line-height: 1;
-
-  img {
-    width: 100%;
-    line-height: 1;
-  }
 
   svg {
     display: block;
@@ -91,29 +88,18 @@ const NotificationTitle = styled.span`
   grid-area: title;
   text-transform: uppercase;
   opacity: 0.5;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  line-height: 1;
-  overflow: hidden;
-  align-self: center;
 `
 
 const NotificationDescription = styled.span`
   grid-area: description;
   padding: 0 4px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  line-height: 1.1;
-  overflow: hidden;
-  text-align: right;
-  opacity: 0;
-  will-change: opacity;
-  transition: opaicty 0.2s ease-in-out;
+  font-size: 20px;
+  line-height: 1;
 `
 
 const NotificationIcon = styled(Icon)`
   grid-area: icon;
-  font-size: 18px;
+  font-size: 24px;
   color: hsla(0, 0%, 0%, 10%);
 
   .dark-mode & {
@@ -142,13 +128,6 @@ const variants = {
   }
 }
 
-const PlaceholderIcon = styled(Icon).attrs({
-  name: 'splotch'
-})`
-  color: ${props => props.theme.color.yellow};
-  font-size: 20px;
-`
-
 export default props => (
   <motion.div
     whileHover={{ scale: 1.02 }}
@@ -158,11 +137,11 @@ export default props => (
   >
     <Notification to={props.to} onClick={e => e.stopPropagation()}>
       <NotificationLogo>
-        {props.logo || <PlaceholderIcon />}
+        <Logo brand={props.id} />
       </NotificationLogo>
       <NotificationTitle>{props.title}</NotificationTitle>
       <NotificationDescription>{props.description}</NotificationDescription>
-      <NotificationIcon name={props.icon} />
+      <NotificationIcon name={props.icon} fixedWidth />
     </Notification>
   </motion.div>
 )
