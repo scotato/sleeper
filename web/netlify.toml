@@ -1,0 +1,12 @@
+[build]
+  command = "yarn build"
+  functions = "built-lambda"
+  publish = "build"
+
+[dev]
+  command = "yarn start"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

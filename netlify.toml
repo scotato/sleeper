@@ -1,5 +1,6 @@
 [build]
   command = "yarn web:build"
+  functions = "web/built-lambda"
   publish = "web/build"
 
 [dev]
