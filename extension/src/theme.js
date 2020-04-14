@@ -1,3 +1,5 @@
+import { css } from 'styled-components'
+
 export const color = {
   black: 'hsl(0, 0%, 0%)',
   white: 'hsl(0, 0%, 90%)',
@@ -14,4 +16,12 @@ export const color = {
   default: '#c7ced1'
 }
 
-export default { color }
+const browser = {
+  firefox: (...args) => css`
+    @-moz-document url-prefix() {
+      ${css(...args)}
+    }
+  `
+}
+
+export default { color, browser }

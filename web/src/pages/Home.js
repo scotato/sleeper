@@ -3,10 +3,9 @@ import { motion, useCycle } from "framer-motion"
 import styled from 'styled-components'
 
 import Time from 'extension/src/components/Time'
-import Notification from 'extension/src/components/Notification'
+import Notification from '../components/Notification'
 
 const Notifications = styled(motion.div)`
-  /* display: grid; */
   margin: 0 auto;
   padding: 0 16px;
   grid-template-rows: auto 1fr;

@@ -1,17 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import useDarkMode from 'use-dark-mode'
-import browser from "webextension-polyfill"
 
 import useSettings from '../store/settings'
-import { Context } from './Context'
 import { blurStyle } from './Blur'
-import Switch from './Switch'
-import Group from './Group'
-import Row from './Row'
 import Icon from './Icon'
-import { permissions } from './TopSites'
 
 const Settings = styled(motion.div)`
   display: grid;
@@ -60,24 +53,6 @@ const Button = styled(motion.button)`
   }
 `
 
-export const SettingsButton = props => (
-  <Button
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    transition={{
-      type: 'spring',
-      damping: 15,
-      stiffness: 500,
-      restSpeed: 0.001,
-      restDelta: 0.001
-    }}
-    initial={false}
-    {...props}
-  >
-    <SettingsBar />
-  </Button>
-)
-
 const variants = {
   open: { opacity: 1, y: 0 },
   closed: { opacity: 0, y: "100%" },
@@ -99,52 +74,43 @@ const SettingsDismissButton = styled.button`
   color: hsla(0, 0%, 0%, 25%);
   border-radius: 46px;
 
-  @-moz-document url-prefix() {
-    color: hsla(0, 0%, 0%, 10%);
+  ${props => props.theme.browser.firefox`
+      color: hsla(0, 0%, 0%, 10%);
 
     .dark-mode & {
       color: hsla(0, 0%, 100%, 10%);
     }
-  }
+  `}
 
   &:focus {
     outline: none;
   }
 `
 
-export default () => {
-  const { state, dispatch } = useContext(Context)
-  const { toggle: toggleDarkMode, value: isDarkMode } = useDarkMode()
-  const toggleSettings = () => dispatch({type: 'toggleSettings'})
-  const { isSettingsOpen } = state
-  const {
-    isTopSites,
-    isTopSitesDetails,
-    isDarkModeAutomatic,
-    setTopSites,
-    setTopSitesDetails,
-    toggleDarkModeAutomatic
-  } = useSettings()
+export const SettingsButton = props => {
+  const { toggleSettingsOpen } = useSettings()
 
-  // to enable we have to request permission
-  const toggleTopSites = () => {
-    isTopSites
-      ? setTopSites(false)
-      : browser.permissions
-        .request(permissions)
-        .then(granted => granted
-          ? setTopSites(true)
-          : console.log('no permission')
-        )
-  }
+  return (
+  <Button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    transition={{
+      type: 'spring',
+      damping: 15,
+      stiffness: 500,
+      restSpeed: 0.001,
+      restDelta: 0.001
+    }}
+    initial={false}
+    onClick={toggleSettingsOpen}
+    {...props}
+  >
+    <SettingsBar />
+  </Button>
+)}
 
-  // automatic dark mode
-  useEffect(() => {
-    const isDarkModeSystem = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    const isDarkModeSync = isDarkMode === isDarkModeSystem
-    const shouldToggleDarkMode = isDarkModeAutomatic && !isDarkModeSync
-    if (shouldToggleDarkMode) toggleDarkMode()
-  }, [isDarkMode, isDarkModeAutomatic])
+export default props => {
+  const { isSettingsOpen, toggleSettingsOpen } = useSettings()
 
   return (
     <Settings
@@ -153,45 +119,11 @@ export default () => {
       transition={spring}
       initial={false}
     >
-      <SettingsDismissButton onClick={toggleSettings}>
+      <SettingsDismissButton onClick={toggleSettingsOpen}>
         <Icon name="chevron-down" fixedWidth />
       </SettingsDismissButton>
 
-      <div>
-        <Group>
-          <Row icon="star" title="Top Sites" detail={
-            <Switch
-              checked={isTopSites}
-              onChange={toggleTopSites}
-            />
-          }/>
-
-          <Row icon="globe" title="Top Sites Urls" detail={
-            <Switch
-              checked={isTopSites && isTopSitesDetails}
-              onChange={setTopSitesDetails}
-              disabled={!isTopSites}
-            />
-          }/>
-        </Group>
-
-        <Group caption="Automatic Dark Mode matches system dark mode settings">
-          <Row icon="moon" title="Dark Mode" detail={
-            <Switch
-              checked={isDarkMode}
-              onChange={toggleDarkMode}
-              disabled={isDarkModeAutomatic}
-            />
-          }/>
-
-          <Row icon="magic" title="Automatic Dark Mode" detail={
-            <Switch
-              checked={isDarkModeAutomatic}
-              onChange={toggleDarkModeAutomatic}
-            />
-          }/>
-        </Group>
-      </div>
+      <div>{props.children}</div>
     </Settings>
   )
 }

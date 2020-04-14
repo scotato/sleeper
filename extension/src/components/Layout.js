@@ -1,10 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-import { Context } from './Context'
 import Blobs from './Blobs'
-import GlobalStyle from './GlobalStyle'
-import Settings, { SettingsButton } from './Settings'
 
 const Layout = styled.div`
   position: relative;
@@ -46,23 +43,13 @@ export const Container = styled.div`
   }
 `
 
-export default props => {
-  const { dispatch } = useContext(Context)
-  const toggleSettings = () => dispatch({type: 'toggleSettings'})
-
-  return (
-    <>
-      <GlobalStyle />
-      <Layout>
-        <Body>
-          {props.children}
-          <SettingsButton onClick={toggleSettings} />
-        </Body>
-        <BlobsContainer>
-          <Blobs />
-        </BlobsContainer>
-      </Layout>
-      <Settings />
-    </>
-  )
-}
+export default props => (
+  <Layout>
+    <Body>
+      {props.children}
+    </Body>
+    <BlobsContainer>
+      <Blobs />
+    </BlobsContainer>
+  </Layout>
+)

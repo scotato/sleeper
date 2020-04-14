@@ -2,10 +2,10 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { motion } from "framer-motion"
 
-import Link from './Link'
-import Logo from './Logo'
-import Icon from './Icon'
-import { blurStyle } from './Blur'
+import Link from 'extension/src/components/Link'
+import Logo from 'extension/src/components/Logo'
+import Icon from 'extension/src/components/Icon'
+import { blurStyle } from 'extension/src/components/Blur'
 
 const indicatorStyle = css`
   position: absolute;
