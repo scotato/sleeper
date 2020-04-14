@@ -66,8 +66,11 @@ export default () => {
             .map(site => site.hostname)
           const faviconsUnique = [...new Set(missingFavicons)]
           setSites(hydratedSites)
+          const endpoint = process.env.NODE_ENV !== 'production'
+            ? 'https://localhost:9000/.netlify/functions/scraper'
+            : 'https://sleeper.fyi/.netlify/functions/scraper'
 
-          fetch("http://localhost:9000/.netlify/functions/scraper", {
+          fetch(endpoint, {
             method: 'POST',
             body: JSON.stringify(faviconsUnique)
           })
