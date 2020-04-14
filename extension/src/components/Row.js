@@ -19,6 +19,10 @@ export const rowStyle = css`
   background-color: hsla(0, 0%, 100%, 25%);
   border-bottom: 2px solid hsla(0, 0%, 0%, 10%);
 
+  ${props => props.theme.browser.firefox`
+    background-color: hsla(0, 0%, 0%, 5%);
+  `}
+
   .dark-mode & {
     background-color: hsla(0, 0%, 0%, 25%);
   }
