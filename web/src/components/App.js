@@ -14,6 +14,7 @@ import { About, Privacy } from '../pages'
 import Settings, { SettingsButton } from 'extension/src/components/Settings'
 import SettingsTopSites from './SettingsTopSites'
 import SettingsDarkMode from 'extension/src/components/SettingsDarkMode'
+import SettingsHelp from 'extension/src/components/SettingsHelp'
 
 ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS)
 ReactGA.pageview(window.location.pathname + window.location.search)
@@ -35,6 +36,7 @@ export default () => (
         <Settings>
           <SettingsTopSites />
           <SettingsDarkMode />
+          <SettingsHelp />
         </Settings>
       </>
     </ContextProvider>

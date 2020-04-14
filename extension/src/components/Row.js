@@ -37,9 +37,11 @@ const LinkRow = styled(Link)`
   grid-template-areas: "badge title detail arrow";
   grid-template-columns: 32px auto auto 20px;
   color: inherit;
+  text-decoration: none;
 
   &:hover {
     color: inherit;
+    text-decoration: none;
   }
 
   &:focus svg {
@@ -79,16 +81,17 @@ export const Detail = styled.span`
   overflow: hidden;
   line-height: 1.1;
   max-height: 32px;
+  font-size: 20px;
   z-index: 1;
 `
 
 const Arrow = styled(Icon).attrs({
-  name: props => props.external ? 'external-link-alt' : 'chevron-right',
-  size: 600
+  name: props => props.external ? 'external-link-alt' : 'chevron-right'
 })`
   margin: auto 0;
   grid-area: arrow;
   color: hsl(0, 0%, 40%);
+  font-size: 20px;
 `
 
 export default props => {

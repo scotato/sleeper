@@ -14,7 +14,6 @@ const Body = styled(motion.div)`
 `
 
 const Page = styled.div`
-  margin-bottom: 72px;
   padding: 32px 0;
   pointer-events: all;
   background: white;

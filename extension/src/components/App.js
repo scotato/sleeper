@@ -9,6 +9,7 @@ import TopSites from './TopSites'
 import Settings, { SettingsButton } from './Settings'
 import SettingsTopSites from './SettingsTopSites'
 import SettingsDarkMode from './SettingsDarkMode'
+import SettingsHelp from './SettingsHelp'
 import GlobalStyle from './GlobalStyle'
 
 export default () => (
@@ -24,6 +25,7 @@ export default () => (
         <Settings>
           <SettingsTopSites />
           <SettingsDarkMode />
+          <SettingsHelp />
         </Settings>
       </>
     </ContextProvider>

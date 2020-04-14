@@ -1,9 +1,11 @@
 export {
+  faBug,
   faChevronDown,
   faChevronLeft,
   faChevronRight,
   faChevronUp,
   faCircleNotch,
+  faCodeBranch,
   faExternalLinkAlt,
   faGlobe,
   faMagic,

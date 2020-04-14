@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import createPersistedState from 'use-persisted-state'
 import { Context } from '../components/Context'
+import { version } from '../../package.json'
 
 const useTopSites = createPersistedState('isTopSites')
 const useTopSitesDetails = createPersistedState('isTopSitesDetails')
@@ -21,6 +22,7 @@ const useSettings = () => {
   const toggleDarkModeAutomatic = () => setDarkModeAutomatic(!isDarkModeAutomatic)
 
   return {
+    version,
     isSettingsOpen,
     isTopSites,
     isTopSitesDetails,

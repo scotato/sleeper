@@ -10,11 +10,12 @@ const Settings = styled(motion.div)`
   display: grid;
   position: fixed;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   top: 0;
   z-index: 10;
   justify-items: center;
   grid-template-rows: auto 1fr;
+  overflow-y: scroll;
   ${blurStyle}
 `
 
@@ -87,26 +88,33 @@ const SettingsDismissButton = styled.button`
   }
 `
 
+const Spacer = styled.div`
+  height: 72px;
+`
+
 export const SettingsButton = props => {
   const { toggleSettingsOpen } = useSettings()
 
   return (
-  <Button
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    transition={{
-      type: 'spring',
-      damping: 15,
-      stiffness: 500,
-      restSpeed: 0.001,
-      restDelta: 0.001
-    }}
-    initial={false}
-    onClick={toggleSettingsOpen}
-    {...props}
-  >
-    <SettingsBar />
-  </Button>
+    <>
+      <Button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{
+          type: 'spring',
+          damping: 15,
+          stiffness: 500,
+          restSpeed: 0.001,
+          restDelta: 0.001
+        }}
+        initial={false}
+        onClick={toggleSettingsOpen}
+        {...props}
+      >
+        <SettingsBar />
+      </Button>
+      <Spacer />
+    </>
 )}
 
 export default props => {
