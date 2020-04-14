@@ -9,6 +9,7 @@ const Notifications = styled(motion.div)`
   margin: 0 auto;
   padding: 0 16px;
   grid-template-rows: auto 1fr;
+  overflow-x: hidden;
 `
 
 const variants = {
