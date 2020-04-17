@@ -14,8 +14,8 @@ export const rowStyle = css`
   grid-column-gap: 12px;
   line-height: 32px;
   align-items: center;
-  width: 100%;
-  max-width: 600px;
+  width: 512px;
+  max-width: calc(100vw - 32px);
   background-color: hsla(0, 0%, 100%, 25%);
   border-bottom: 2px solid hsla(0, 0%, 0%, 10%);
 
