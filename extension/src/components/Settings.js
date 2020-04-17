@@ -8,6 +8,7 @@ import Icon from './Icon'
 
 const Settings = styled(motion.div)`
   display: grid;
+  padding: 0 16px;
   position: fixed;
   width: 100vw;
   height: 100vh;
