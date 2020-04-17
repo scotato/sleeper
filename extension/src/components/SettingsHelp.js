@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import useSettings from '../store/settings'
 import Group from './Group'

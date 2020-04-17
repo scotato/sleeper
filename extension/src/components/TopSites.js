@@ -80,6 +80,7 @@ export default () => {
           })
         : console.log('permission not granted')
       )
+    // eslint-disable-next-line
   }, [isTopSites])
 
   const hydratedSites = hydrateSites(sites)
@@ -95,7 +96,7 @@ export default () => {
         <Notification
           key={site.url}
           to={site.url}
-          logo={site.logo && <img src={site.logo} />}
+          logo={site.logo && <img src={site.logo} alt="logo" />}
           title={site.title}
           description={isTopSitesDetails ? cleanUrl(site.url) : null}
           icon="external-link-alt"

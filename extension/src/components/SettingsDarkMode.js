@@ -16,6 +16,7 @@ export default () => {
     const isDarkModeSync = isDarkMode === isDarkModeSystem
     const shouldToggleDarkMode = isDarkModeAutomatic && !isDarkModeSync
     if (shouldToggleDarkMode) toggleDarkMode()
+    // eslint-disable-next-line
   }, [isDarkMode, isDarkModeAutomatic])
 
   return (
