@@ -57,7 +57,7 @@
     ]
   },
   "devDependencies": {
-    "bestzip": "2.1.5",
+    "bestzip": "2.1.7",
     "json": "9.0.6"
   }
 }
